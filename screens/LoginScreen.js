@@ -34,13 +34,13 @@ const LoginScreen = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
+          const user = userCredentials.user;
+          console.log(`Logged in with `, user.email);
+          navigation.navigate("Home", docSnap.data());
         } else {
           // docSnap.data() will be undefined in this case
           console.log("No such document!");
         }
-        const user = userCredentials.user;
-        console.log(`Logged in with `, user.email);
-        navigation.navigate("Home", docSnap.data());
         setEmail("");
         setPassword("");
       })
@@ -90,7 +90,10 @@ const LoginScreen = () => {
             Sign Up
           </Text>
         </Text>
-        <Text style={styles.forgotPassword} onPress={() => {}}>
+        <Text
+          style={styles.forgotPassword}
+          onPress={() => navigation.navigate("changePassword")}
+        >
           Forgot password?
         </Text>
       </View>
