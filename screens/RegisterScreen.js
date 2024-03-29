@@ -27,6 +27,7 @@ const RegisterScreen = () => {
           firstName: firstName,
           lastName: lastName,
           email: email,
+          admin: false,
         });
 
         const user = userCredentials.user;
@@ -56,6 +57,7 @@ const RegisterScreen = () => {
           value={firstName}
           onChangeText={(text) => setFirstName(text)}
           style={styles.input}
+          clearButtonMode="while-editing"
         />
         <Text style={styles.label}>Last Name</Text>
         <TextInput
@@ -63,6 +65,7 @@ const RegisterScreen = () => {
           value={lastName}
           onChangeText={(text) => setLastName(text)}
           style={styles.input}
+          clearButtonMode="while-editing"
         />
         <Text style={styles.label}>Email</Text>
         <TextInput
@@ -70,6 +73,7 @@ const RegisterScreen = () => {
           value={email}
           onChangeText={(text) => setEmail(text.toLowerCase())}
           style={styles.input}
+          clearButtonMode="while-editing"
         />
         <Text style={styles.label}>Password</Text>
         <TextInput
@@ -78,6 +82,7 @@ const RegisterScreen = () => {
           onChangeText={(text) => setPassword(text)}
           style={styles.input}
           secureTextEntry
+          clearButtonMode="while-editing"
         />
       </View>
       <View style={styles.buttonContainer}>

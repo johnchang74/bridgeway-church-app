@@ -65,6 +65,7 @@ const LoginScreen = () => {
           value={email}
           onChangeText={(text) => setEmail(text.toLowerCase())}
           style={styles.input}
+          clearButtonMode="while-editing"
         />
         <TextInput
           placeholder="Password"
@@ -72,6 +73,7 @@ const LoginScreen = () => {
           onChangeText={(text) => setPassword(text)}
           style={styles.input}
           secureTextEntry
+          clearButtonMode="while-editing"
         />
       </View>
       <View style={styles.buttonContainer}>

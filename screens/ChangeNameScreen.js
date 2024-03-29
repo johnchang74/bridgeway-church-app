@@ -10,42 +10,42 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { getAuth, updatePassword } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
-const ChangePasswordScreen = (props) => {
+const ChangeNameScreen = (props) => {
+  const navigation = useNavigation();
   const {
     firstName: firstName,
     lastName: lastName,
     email: email,
     admin: admin,
   } = props.route.params;
-  const [newPassword, setNewPassword] = useState("");
-  const [retypedPassword, setRetypedPassword] = useState("");
+  const [fName, setfName] = useState(firstName);
+  const [lName, setlName] = useState(lastName);
   const [error, setError] = useState(false);
-  const navigation = useNavigation();
-  const auth = getAuth();
-  const user = auth.currentUser;
 
-  const changePassword = () => {
-    if (
-      newPassword !== "" &&
-      retypedPassword !== "" &&
-      newPassword !== retypedPassword
-    ) {
-      setNewPassword("");
-      setRetypedPassword("");
+  const changeProfile = async () => {
+    if (fName === "" && lName === "") {
+      setfName("");
+      setlName("");
       setError(true);
-      alert("Your new password doesn't match!");
+      alert("First name and/or last name is blank!");
     } else {
-      setError(false);
-      updatePassword(user, newPassword)
+      const userRef = doc(db, "users", email);
+      console.log(`userRef: `, userRef);
+      await updateDoc(userRef, {
+        firstName: fName,
+        lastName: lName,
+      })
         .then(() => {
-          alert("Password updated succeessfully!");
-          setNewPassword("");
-          setRetypedPassword("");
+          alert("Names updated succeessfully!");
+          setfName("");
+          setlName("");
+          console.log(`fName: ${fName} lName: ${lName}`);
           navigation.navigate("Setting", {
-            firstName,
-            lastName,
+            firstName: fName,
+            lastName: lName,
             email,
             admin,
           });
@@ -71,35 +71,29 @@ const ChangePasswordScreen = (props) => {
       >
         <Image style={styles.arrow} source={require("../assets/arrow.png")} />
       </Pressable>
-      <View style={styles.changePasswordContainer}>
+      <View style={styles.changeProfileContainer}>
         <Image source={require("../assets/bridgeway.png")} />
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>New password</Text>
+          <Text style={styles.label}>First name</Text>
           <TextInput
-            placeholder="New password"
-            value={newPassword}
-            onChangeText={(text) => setNewPassword(text)}
-            style={
-              error && newPassword === "" ? styles.errorInput : styles.input
-            }
-            secureTextEntry
+            placeholder="New first name"
+            value={fName}
+            onChangeText={(text) => setfName(text)}
+            style={styles.input}
             clearButtonMode="while-editing"
           />
-          <Text style={styles.label}>Re-type password</Text>
+          <Text style={styles.label}>Last name</Text>
           <TextInput
-            placeholder="Re-type new password"
-            value={retypedPassword}
-            onChangeText={(text) => setRetypedPassword(text)}
-            style={
-              error && retypedPassword === "" ? styles.errorInput : styles.input
-            }
-            secureTextEntry
+            placeholder="New last name"
+            value={lName}
+            onChangeText={(text) => setlName(text)}
+            style={styles.input}
             clearButtonMode="while-editing"
           />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={changePassword} style={styles.button}>
-            <Text style={styles.buttonText}>Change password</Text>
+          <TouchableOpacity onPress={changeProfile} style={styles.button}>
+            <Text style={styles.buttonText}>Change name</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -107,14 +101,14 @@ const ChangePasswordScreen = (props) => {
   );
 };
 
-export default ChangePasswordScreen;
+export default ChangeNameScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
-  changePasswordContainer: {
+  changeProfileContainer: {
     alignItems: "center",
     justifyContent: "center",
   },

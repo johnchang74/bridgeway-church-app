@@ -15,6 +15,7 @@ const HomeScreen = (props) => {
     firstName: firstName,
     lastName: lastName,
     email: email,
+    admin: admin,
   } = props.route.params;
   const [month, setMonth] = useState();
   const [day, setDay] = useState();
@@ -79,6 +80,7 @@ const HomeScreen = (props) => {
             firstName,
             lastName,
             email,
+            admin,
           })
         }
       >
@@ -107,7 +109,12 @@ const HomeScreen = (props) => {
         <Text style={styles.weekly}>Weekly 1/1</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={""} style={styles.button}>
+        {admin && (
+          <TouchableOpacity onPress={() => {}} style={styles.button}>
+            <Text style={styles.buttonText}>Admin</Text>
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity onPress={() => {}} style={styles.button}>
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>
@@ -164,12 +171,15 @@ const styles = StyleSheet.create({
     width: "10%",
   },
   buttonContainer: {
-    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 50,
   },
   button: {
     backgroundColor: "white",
     width: "30%",
-    height: "20%",
+    height: "30%",
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",

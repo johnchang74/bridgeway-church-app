@@ -6,6 +6,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import SettingScreen from "./screens/SettingScreen";
 import ChangePasswordScreen from "./screens/ChangePasswordScreen";
+import ChangeNameScreen from "./screens/ChangeNameScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,11 @@ export default function App() {
           options={{ headerShown: false }}
           name="ChangePassword"
           component={ChangePasswordScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ChangeName"
+          component={ChangeNameScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

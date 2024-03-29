@@ -15,7 +15,9 @@ const SettingScreen = (props) => {
     firstName: firstName,
     lastName: lastName,
     email: email,
+    admin: admin,
   } = props.route.params;
+  console.log(`firstName: ${firstName} lastName: ${lastName}`);
   const navigation = useNavigation();
   const auth = getAuth();
 
@@ -27,6 +29,7 @@ const SettingScreen = (props) => {
           firstName,
           lastName,
           email,
+          admin,
         });
       })
       .catch((error) => {
@@ -42,6 +45,7 @@ const SettingScreen = (props) => {
             firstName,
             lastName,
             email,
+            admin,
           })
         }
       >
@@ -59,8 +63,22 @@ const SettingScreen = (props) => {
       <View style={styles.userContainer}>
         <Text />
         <Text style={styles.name}>
-          {firstName} {lastName}
+          {firstName} {lastName}{" "}
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("ChangeName", {
+                firstName,
+                lastName,
+                email,
+                admin,
+              })
+            }
+            style={styles.edit}
+          >
+            <Text style={styles.editButtonText}>edit</Text>
+          </TouchableOpacity>
         </Text>
+        {admin && <Text>You are an administrator</Text>}
         <Text />
         <Text style={styles.email}>{email}</Text>
         <Text />
@@ -71,6 +89,7 @@ const SettingScreen = (props) => {
             firstName,
             lastName,
             email,
+            admin,
           })
         }
         style={styles.changePasswordContainer}
