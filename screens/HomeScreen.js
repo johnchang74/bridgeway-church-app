@@ -114,7 +114,20 @@ const HomeScreen = (props) => {
             <Text style={styles.buttonText}>Admin</Text>
           </TouchableOpacity>
         )}
-        <TouchableOpacity onPress={() => {}} style={styles.button}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("DailyRead", {
+              firstName,
+              lastName,
+              email,
+              admin,
+              month,
+              day,
+              dayOfDate,
+            })
+          }
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>

@@ -7,6 +7,7 @@ import HomeScreen from "./screens/HomeScreen";
 import SettingScreen from "./screens/SettingScreen";
 import ChangePasswordScreen from "./screens/ChangePasswordScreen";
 import ChangeNameScreen from "./screens/ChangeNameScreen";
+import DailyReadScreen from "./screens/DailyReadScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,11 @@ export default function App() {
           options={{ headerShown: false }}
           name="ChangeName"
           component={ChangeNameScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="DailyRead"
+          component={DailyReadScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
