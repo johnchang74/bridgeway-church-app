@@ -9,18 +9,31 @@ import {
   Pressable,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import {
+  updateDailyRead,
+  updateWeeklyRead,
+  getClosestSunday,
+  getMonthDesc,
+  getDayDesc,
+  getGreetingDesc,
+  getCurrentDate,
+} from "../utils/utility";
 
 const HomeScreen = (props) => {
   const {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    admin: admin,
+    extraInfo: extraInfo,
   } = props.route.params;
+  console.log(`props.route.params: `, props.route.params);
   const [month, setMonth] = useState();
   const [day, setDay] = useState();
   const [dayOfDate, setDayOfDate] = useState();
   const [greeting, setGreeting] = useState();
+  const [formatToday, setFormatToday] = useState();
+  const [checkDaily, setCheckDaily] = useState();
+  const [checkWeekly, setCheckWeekly] = useState();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -29,48 +42,34 @@ const HomeScreen = (props) => {
     setDay(currentDate.getDate());
     setDayOfDate(getDayDesc(currentDate.getDay()));
     setGreeting(getGreetingDesc(currentDate.getHours()));
-  }, []);
+    setFormatToday(getCurrentDate());
+    console.log(`extraInfo: `, extraInfo);
+    if (extraInfo) {
+      console.log(`extraInfo: `, extraInfo);
+      if (extraInfo.dailyDate !== "") {
+        const todayDate = new Date(formatToday);
+        const dailyDate = new Date(extraInfo.dailyDate);
+        if (dailyDate < todayDate) {
+          updateDailyRead(false, "");
+        }
+      }
 
-  const getMonthDesc = (num) => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return months[num - 1];
-  };
-
-  const getDayDesc = (num) => {
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    return days[num];
-  };
-
-  const getGreetingDesc = (currentHour) => {
-    if (currentHour < 12) {
-      return "Good morning";
-    } else if (currentHour < 18) {
-      return "Good afternoon";
-    } else {
-      return "Good evening";
+      if (extraInfo.weeklyDate !== "") {
+        console.log(`extraInfo.weeklyDate: `, extraInfo.weeklyDate);
+        const todayDate = new Date(formatToday);
+        console.log(
+          `closestSundayDate: `,
+          getClosestSunday(extraInfo.weeklyDate)
+        );
+        const closestSundayDate = new Date(
+          getClosestSunday(extraInfo.weeklyDate)
+        );
+        if (closestSundayDate < todayDate) {
+          updateWeeklyRead(false, "");
+        }
+      }
     }
-  };
+  }, []);
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -80,7 +79,7 @@ const HomeScreen = (props) => {
             firstName,
             lastName,
             email,
-            admin,
+            extraInfo,
           })
         }
       >
@@ -105,11 +104,15 @@ const HomeScreen = (props) => {
         <Text />
         <Text />
         <Text />
-        <Text style={styles.daily}>Daily 1/1</Text>
-        <Text style={styles.weekly}>Weekly 1/1</Text>
+        <Text style={styles.daily}>
+          Daily {extraInfo && extraInfo.daily ? 1 : 0}/1
+        </Text>
+        <Text style={styles.weekly}>
+          Weekly {extraInfo && extraInfo.weekly ? 1 : 0}/1
+        </Text>
       </View>
       <View style={styles.buttonContainer}>
-        {admin && (
+        {extraInfo && extraInfo.admin && (
           <TouchableOpacity onPress={() => {}} style={styles.button}>
             <Text style={styles.buttonText}>Admin</Text>
           </TouchableOpacity>
@@ -120,7 +123,7 @@ const HomeScreen = (props) => {
               firstName,
               lastName,
               email,
-              admin,
+              extraInfo,
               month,
               day,
               dayOfDate,

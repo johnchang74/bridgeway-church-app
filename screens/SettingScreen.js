@@ -15,7 +15,7 @@ const SettingScreen = (props) => {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    admin: admin,
+    extraInfo: extraInfo,
   } = props.route.params;
   console.log(`firstName: ${firstName} lastName: ${lastName}`);
   const navigation = useNavigation();
@@ -29,7 +29,7 @@ const SettingScreen = (props) => {
           firstName,
           lastName,
           email,
-          admin,
+          extraInfo,
         });
       })
       .catch((error) => {
@@ -45,7 +45,7 @@ const SettingScreen = (props) => {
             firstName,
             lastName,
             email,
-            admin,
+            extraInfo,
           })
         }
       >
@@ -70,7 +70,7 @@ const SettingScreen = (props) => {
                 firstName,
                 lastName,
                 email,
-                admin,
+                extraInfo,
               })
             }
             style={styles.edit}
@@ -78,7 +78,7 @@ const SettingScreen = (props) => {
             <Text style={styles.editButtonText}>edit</Text>
           </TouchableOpacity>
         </Text>
-        {admin && <Text>You are an administrator</Text>}
+        {extraInfo && extraInfo.admin && <Text>You are an administrator</Text>}
         <Text />
         <Text style={styles.email}>{email}</Text>
         <Text />
@@ -89,7 +89,7 @@ const SettingScreen = (props) => {
             firstName,
             lastName,
             email,
-            admin,
+            extraInfo,
           })
         }
         style={styles.changePasswordContainer}

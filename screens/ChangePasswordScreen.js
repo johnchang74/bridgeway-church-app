@@ -17,7 +17,7 @@ const ChangePasswordScreen = (props) => {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    admin: admin,
+    extraInfo: extraInfo,
   } = props.route.params;
   const [newPassword, setNewPassword] = useState("");
   const [retypedPassword, setRetypedPassword] = useState("");
@@ -47,7 +47,7 @@ const ChangePasswordScreen = (props) => {
             firstName,
             lastName,
             email,
-            admin,
+            extraInfo,
           });
         })
         .catch((error) => {
@@ -65,7 +65,7 @@ const ChangePasswordScreen = (props) => {
             firstName,
             lastName,
             email,
-            admin,
+            extraInfo,
           })
         }
       >

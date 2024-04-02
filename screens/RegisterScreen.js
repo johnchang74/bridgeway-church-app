@@ -27,7 +27,13 @@ const RegisterScreen = () => {
           firstName: firstName,
           lastName: lastName,
           email: email,
-          admin: false,
+          extraInfo: {
+            admin: false,
+            daily: false,
+            weekly: false,
+            dailyDate: null,
+            weeklyDate: null,
+          },
         });
 
         const user = userCredentials.user;

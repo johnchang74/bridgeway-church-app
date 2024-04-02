@@ -19,7 +19,7 @@ const ChangeNameScreen = (props) => {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    admin: admin,
+    extraInfo: extraInfo,
   } = props.route.params;
   const [fName, setfName] = useState(firstName);
   const [lName, setlName] = useState(lastName);
@@ -47,7 +47,7 @@ const ChangeNameScreen = (props) => {
             firstName: fName,
             lastName: lName,
             email,
-            admin,
+            extraInfo,
           });
         })
         .catch((error) => {
@@ -65,7 +65,7 @@ const ChangeNameScreen = (props) => {
             firstName,
             lastName,
             email,
-            admin,
+            extraInfo,
           })
         }
       >
