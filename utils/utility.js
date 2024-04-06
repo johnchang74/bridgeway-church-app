@@ -1,18 +1,41 @@
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-export const updateDailyRead = async (dailyFlag, dailyReadDate) => {
+const getTwoDigitNum = (dayNum) => {
+  let dayString = dayNum.toString();
+  if (dayString.length < 2) {
+    return "0" + dayString;
+  } else {
+    return dayString;
+  }
+};
+
+export const getDailyRead = async (email) => {
   const docRef = doc(db, "users", email);
-  console.log(`docRef for daily: `, docRef);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    console.log(`docSnap.data(): `, docSnap.data());
+  }
+};
+
+export const updateDailyRead = async (dailyFlag, dailyReadDate, email) => {
+  const docRef = doc(db, "users", email);
   await updateDoc(docRef, {
     "extraInfo.daily": dailyFlag,
     "extraInfo.dailyDate": dailyReadDate,
   });
 };
 
-export const updateWeeklyRead = async (weeklyFlag, weeklyReadDate) => {
+export const getWeeklyRead = async (email) => {
   const docRef = doc(db, "users", email);
-  console.log(`docRef for weekly: `, docRef);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    console.log(`docSnap.data(): `, docSnap.data());
+  }
+};
+
+export const updateWeeklyRead = async (weeklyFlag, weeklyReadDate, email) => {
+  const docRef = doc(db, "users", email);
   await updateDoc(docRef, {
     "extraInfo.weekly": weeklyFlag,
     "extraInfo.weeklyDate": weeklyReadDate,
@@ -21,16 +44,16 @@ export const updateWeeklyRead = async (weeklyFlag, weeklyReadDate) => {
 
 export const getCurrentDate = () => {
   const currentDate = new Date();
-  return `${
+  return `${currentDate.getFullYear()}-${getTwoDigitNum(
     currentDate.getMonth() + 1
-  }/${currentDate.getDate()}/${currentDate.getFullYear()}`;
+  )}-${getTwoDigitNum(currentDate.getDate())}`;
 };
 
 export const getGivenDate = (givenDate) => {
   const givenDateObj = new Date(givenDate);
-  return `${
+  return `${givenDateObj.getFullYear()}-${getTwoDigitNum(
     givenDateObj.getMonth() + 1
-  }/${givenDateObj.getDate()}/${givenDateObj.getFullYear()}`;
+  )}-${getTwoDigitNum(givenDateObj.getDate())}`;
 };
 
 export const getDateRank = (actualDay) => {
@@ -48,11 +71,9 @@ export const getDateRank = (actualDay) => {
 export const getClosestSunday = (weeklyDate) => {
   const weeklyDateObj = new Date(weeklyDate);
   const addDaysForClosestSunday = 7 - weeklyDateObj.getDay();
-  console.log(`addDaysForClosestSunday: `, addDaysForClosestSunday);
   const nextClosestSunday = weeklyDateObj.setDate(
     weeklyDateObj.getDate() + addDaysForClosestSunday
   );
-  console.log(`nextClosestSunday: `, nextClosestSunday);
   return getGivenDate(nextClosestSunday);
 };
 

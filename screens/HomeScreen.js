@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
+  getDailyRead,
   updateDailyRead,
   updateWeeklyRead,
   getClosestSunday,
@@ -27,49 +28,37 @@ const HomeScreen = (props) => {
     extraInfo: extraInfo,
   } = props.route.params;
   console.log(`props.route.params: `, props.route.params);
-  const [month, setMonth] = useState();
-  const [day, setDay] = useState();
-  const [dayOfDate, setDayOfDate] = useState();
-  const [greeting, setGreeting] = useState();
-  const [formatToday, setFormatToday] = useState();
-  const [checkDaily, setCheckDaily] = useState();
-  const [checkWeekly, setCheckWeekly] = useState();
+  const currentDate = new Date();
+  const month = getMonthDesc(currentDate.getMonth() + 1);
+  const day = currentDate.getDate();
+  const dayOfDate = getDayDesc(currentDate.getDay());
+  const greeting = getGreetingDesc(currentDate.getHours());
+  const formatToday = getCurrentDate();
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const currentDate = new Date();
-    setMonth(getMonthDesc(currentDate.getMonth() + 1));
-    setDay(currentDate.getDate());
-    setDayOfDate(getDayDesc(currentDate.getDay()));
-    setGreeting(getGreetingDesc(currentDate.getHours()));
-    setFormatToday(getCurrentDate());
-    console.log(`extraInfo: `, extraInfo);
-    if (extraInfo) {
-      console.log(`extraInfo: `, extraInfo);
-      if (extraInfo.dailyDate !== "") {
-        const todayDate = new Date(formatToday);
-        const dailyDate = new Date(extraInfo.dailyDate);
-        if (dailyDate < todayDate) {
-          updateDailyRead(false, "");
-        }
-      }
-
-      if (extraInfo.weeklyDate !== "") {
-        console.log(`extraInfo.weeklyDate: `, extraInfo.weeklyDate);
-        const todayDate = new Date(formatToday);
-        console.log(
-          `closestSundayDate: `,
-          getClosestSunday(extraInfo.weeklyDate)
-        );
-        const closestSundayDate = new Date(
-          getClosestSunday(extraInfo.weeklyDate)
-        );
-        if (closestSundayDate < todayDate) {
-          updateWeeklyRead(false, "");
-        }
+  const checkDaily = () => {
+    if (extraInfo.dailyDate !== "") {
+      const todayDate = new Date(formatToday + "T00:00:00");
+      const dailyDate = new Date(extraInfo.dailyDate + "T00:00:00");
+      if (dailyDate < todayDate) {
+        updateDailyRead(false, "", email);
       }
     }
-  }, []);
+    return extraInfo.daily;
+  };
+
+  const checkWeekly = () => {
+    if (extraInfo.weeklyDate !== "") {
+      const todayDate = new Date(formatToday + "T00:00:00");
+      const closestSundayDate = new Date(
+        getClosestSunday(extraInfo.weeklyDate) + "T00:00:00"
+      );
+      if (closestSundayDate < todayDate) {
+        updateWeeklyRead(false, "", email);
+      }
+    }
+    return extraInfo.weekly;
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -105,10 +94,10 @@ const HomeScreen = (props) => {
         <Text />
         <Text />
         <Text style={styles.daily}>
-          Daily {extraInfo && extraInfo.daily ? 1 : 0}/1
+          Daily {extraInfo && checkDaily() ? 1 : 0}/1
         </Text>
         <Text style={styles.weekly}>
-          Weekly {extraInfo && extraInfo.weekly ? 1 : 0}/1
+          Weekly {extraInfo && checkWeekly() ? 1 : 0}/1
         </Text>
       </View>
       <View style={styles.buttonContainer}>

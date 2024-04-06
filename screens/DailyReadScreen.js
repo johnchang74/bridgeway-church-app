@@ -81,7 +81,7 @@ const DailyReadScreen = (props) => {
             onPress={() => {
               if (!checkDaily) {
                 setCheckDaily(!checkDaily ? !checkDaily : checkDaily);
-                updateDailyRead(true, getCurrentDate());
+                updateDailyRead(true, getCurrentDate(), email);
               }
             }}
           />
@@ -145,7 +145,7 @@ const DailyReadScreen = (props) => {
             onPress={() => {
               if (!checkWeekly) {
                 setCheckWeekly(!checkWeekly ? !checkWeekly : checkWeekly);
-                updateWeeklyRead(true, getCurrentDate());
+                updateWeeklyRead(true, getCurrentDate(), email);
               }
             }}
           />
