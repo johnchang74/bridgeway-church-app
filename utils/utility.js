@@ -117,3 +117,35 @@ export const getGreetingDesc = (currentHour) => {
     return "Good evening";
   }
 };
+
+export const getChapterHeight = (bookName) => {
+  if (bookName === "Genesis") {
+    return 310;
+  } else if (
+    bookName === "Exodus" ||
+    bookName === "Numbers" ||
+    bookName === "Deuteronomy" ||
+    bookName === "2 Chronicles"
+  ) {
+    return 215;
+  } else if (
+    bookName === "Leviticus" ||
+    bookName === "1 Samuel" ||
+    bookName === "2 Kings" ||
+    bookName === "1 Chronicles"
+  ) {
+    return 170;
+  } else if (
+    bookName === "Joshua" ||
+    bookName === "2 Samuel" ||
+    bookName === "1 Kings"
+  ) {
+    return 125;
+  } else if (bookName === "Judges") {
+    return 125;
+  } else if (bookName === "Ruth") {
+    return 35;
+  } else {
+    return 215;
+  }
+};

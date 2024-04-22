@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
-  getDailyRead,
   updateDailyRead,
   updateWeeklyRead,
   getClosestSunday,
@@ -102,7 +101,17 @@ const HomeScreen = (props) => {
       </View>
       <View style={styles.buttonContainer}>
         {extraInfo && extraInfo.admin && (
-          <TouchableOpacity onPress={() => {}} style={styles.button}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("HolyBible", {
+                firstName,
+                lastName,
+                email,
+                extraInfo,
+              })
+            }
+            style={styles.button}
+          >
             <Text style={styles.buttonText}>Admin</Text>
           </TouchableOpacity>
         )}

@@ -8,6 +8,8 @@ import SettingScreen from "./screens/SettingScreen";
 import ChangePasswordScreen from "./screens/ChangePasswordScreen";
 import ChangeNameScreen from "./screens/ChangeNameScreen";
 import DailyReadScreen from "./screens/DailyReadScreen";
+import HolyBibleScreen from "./screens/HolyBibleScreen";
+import BibleVerseScreen from "./screens/BibleVerseScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +51,16 @@ export default function App() {
           options={{ headerShown: false }}
           name="DailyRead"
           component={DailyReadScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="HolyBible"
+          component={HolyBibleScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="BibleVerse"
+          component={BibleVerseScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
