@@ -7,7 +7,6 @@ import {
   Button,
   SafeAreaView,
   ScrollView,
-  StatusBar,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { bible } from "../utils/constants";
@@ -24,10 +23,16 @@ const HolyBibleScreen = (props) => {
   } = props.route.params;
   const navigation = useNavigation();
   const [selectedBook, setSelectedBook] = useState();
+  const [selectedChapter, setSelectedChapter] = useState();
 
   const chooseBook = (bookName) => {
     console.log(`select: `, selectedBook);
     setSelectedBook(bookName);
+  };
+
+  const chooseChapter = (chapter) => {
+    console.log(`selcet chapter: `, chapter);
+    setSelectedChapter(chapter);
   };
 
   return (
@@ -47,7 +52,7 @@ const HolyBibleScreen = (props) => {
       <SafeAreaView style={styles.contentContainer}>
         <ScrollView style={styles.scrollView}>
           {bible.map((book) => {
-            console.log(`cur: ${book.title} - select: ${selectedBook}`);
+            // console.log(`cur: ${book.title} - select: ${selectedBook}`);
             return (
               <Expander
                 buttonText={book.title}
@@ -61,13 +66,29 @@ const HolyBibleScreen = (props) => {
                   <View style={styles.chapters(getChapterHeight(book.title))}>
                     {book.content.map((chapter) => {
                       return (
-                        <View style={styles.chapter}>
+                        <View
+                          style={
+                            selectedChapter === chapter.chapter
+                              ? styles.chapter("black")
+                              : styles.chapter("grey")
+                          }
+                        >
                           <Button
                             key={`${book.title.trim().toLowerCase()}-${
                               chapter.chapter
                             }`}
                             title={chapter.chapter}
-                            onPress={() => {}}
+                            onPress={() => {
+                              chooseChapter(chapter.chapter);
+                              navigation.navigate("BibleVerse", {
+                                firstName,
+                                lastName,
+                                email,
+                                extraInfo,
+                                bookName: book.title,
+                                content: chapter,
+                              });
+                            }}
                             color="white"
                           />
                         </View>
@@ -129,12 +150,13 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     gap: 5,
   }),
-  chapter: {
+  chapter: (selectedColor) => ({
     fontSize: 17,
     fontWeight: "800",
     color: "white",
-    width: 40,
-    height: 40,
-    backgroundColor: "grey",
-  },
+    width: 45,
+    height: 45,
+    backgroundColor: selectedColor,
+    justifyContent: "center",
+  }),
 });

@@ -2854,110 +2854,110 @@ export const bible = [
   },
   {
     title: "Matthew",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Mark",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Luke",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "John",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Acts",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Romans",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Corinthians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Corinthians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Galatians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Ephesians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Philippians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Colossians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Thessalonians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Thessalonians",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Timothy",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Timothy",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Titus",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Philemon",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Hebrews",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "James",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Peter",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Peter",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 John",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 John",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "3 John",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Jude",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Revelation",
-    content: [],
+    content: [{ chapter: "1", verses: [] }],
   },
 ];

@@ -119,32 +119,70 @@ export const getGreetingDesc = (currentHour) => {
 };
 
 export const getChapterHeight = (bookName) => {
-  if (bookName === "Genesis") {
-    return 310;
+  if (bookName === "Psalm") {
+    return 1090;
+  } else if (bookName === "Isaiah") {
+    return 490;
+  } else if (bookName === "Genesis" || bookName === "Jeremiah") {
+    return 390;
+  } else if (bookName === "Ezekiel") {
+    return 340;
   } else if (
+    bookName === "Job" ||
     bookName === "Exodus" ||
-    bookName === "Numbers" ||
-    bookName === "Deuteronomy" ||
-    bookName === "2 Chronicles"
+    bookName === "Ezekiel"
   ) {
-    return 215;
+    return 290;
   } else if (
-    bookName === "Leviticus" ||
-    bookName === "1 Samuel" ||
-    bookName === "2 Kings" ||
-    bookName === "1 Chronicles"
+    bookName === "Numbers" ||
+    bookName === "2 Chronicles" ||
+    bookName === "Job"
   ) {
-    return 170;
+    return 290;
+  } else if (
+    bookName === "Deuteronomy" ||
+    bookName === "Job" ||
+    bookName === "1 Samuel" ||
+    bookName === "1 Chronicles" ||
+    bookName === "Proverbs"
+  ) {
+    return 240;
   } else if (
     bookName === "Joshua" ||
-    bookName === "2 Samuel" ||
-    bookName === "1 Kings"
+    bookName === "Leviticus" ||
+    bookName === "2 Kings"
   ) {
-    return 125;
+    return 190;
+  } else if (bookName === "2 Samuel" || bookName === "1 Kings") {
+    return 190;
   } else if (bookName === "Judges") {
-    return 125;
-  } else if (bookName === "Ruth") {
-    return 35;
+    return 140;
+  } else if (
+    bookName === "Ezra" ||
+    bookName === "Nehemiah" ||
+    bookName === "Esther" ||
+    bookName === "Ecclesiastes" ||
+    bookName === "Song of Solomon" ||
+    bookName === "Daniel" ||
+    bookName === "Hosea" ||
+    bookName === "Amos" ||
+    bookName === "Zechariah"
+  ) {
+    return 90;
+  } else if (
+    bookName === "Ruth" ||
+    bookName === "Lamentations" ||
+    bookName === "Joel" ||
+    bookName === "Obadiah" ||
+    bookName === "Jonah" ||
+    bookName === "Micah" ||
+    bookName === "Nahum" ||
+    bookName === "Habakkuk" ||
+    bookName === "Zehpaniah" ||
+    bookName === "Haggai" ||
+    bookName === "Malachi"
+  ) {
+    return 40;
   } else {
     return 215;
   }
