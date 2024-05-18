@@ -19,6 +19,7 @@ import {
   updateDailyRead,
   updateWeeklyRead,
 } from "../utils/utility";
+import { Platform } from "react-native";
 
 const DailyReadScreen = (props) => {
   const {
@@ -77,7 +78,9 @@ const DailyReadScreen = (props) => {
             checkedColor="#09DEC5"
             title="Complete"
             size={35}
-            containerStyle={styles.dailyCheckbox}
+            containerStyle={styles.dailyCheckbox(
+              Platform.OS === "ios" ? -6 : -30
+            )}
             onPress={() => {
               if (!checkDaily) {
                 setCheckDaily(!checkDaily ? !checkDaily : checkDaily);
@@ -86,7 +89,10 @@ const DailyReadScreen = (props) => {
             }}
           />
         </View>
-        <Divider bold={true} style={styles.divider} />
+        <Divider
+          bold={true}
+          style={styles.divider(Platform.OS === "ios" ? -7 : -75)}
+        />
         <View style={styles.bibleVerses}>
           <ScrollView style={styles.scrollView}>
             <Text>
@@ -131,7 +137,7 @@ const DailyReadScreen = (props) => {
             </Text>
           </ScrollView>
         </View>
-        <View style={styles.videoContainer}>
+        <View style={styles.videoContainer(Platform.OS === "ios" ? 35 : 15)}>
           <View>
             <Text style={styles.title}>Weekly - Latest Sermon</Text>
           </View>
@@ -202,11 +208,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#09DEC5",
   },
-  divider: {
+  divider: (marginTopValue) => ({
     backgroundColor: "#09DEC5",
     marginRight: 20,
-    marginTop: -7,
-  },
+    marginTop: marginTopValue,
+  }),
   bibleVerses: {
     marginTop: 10,
     marginRight: 20,
@@ -214,10 +220,10 @@ const styles = StyleSheet.create({
   scrollView: {
     maxHeight: 350,
   },
-  videoContainer: {
-    marginTop: 35,
+  videoContainer: (marginTopValue) => ({
+    marginTop: marginTopValue,
     flexDirection: "row",
-  },
+  }),
   youtube: {
     marginTop: 12,
     marginRight: 20,
@@ -231,14 +237,14 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: "row",
   },
-  dailyCheckbox: {
+  dailyCheckbox: (marginTopValue) => ({
     width: "10%",
     height: "93%",
     backgroundColor: "white",
     marginLeft: "45%",
-    marginTop: -6,
+    marginTop: marginTopValue,
     alignItems: "center",
-  },
+  }),
   weeklyCheckbox: {
     width: "10%",
     height: 50,

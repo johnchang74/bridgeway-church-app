@@ -13,6 +13,10 @@ import {
 import { bible } from "../utils/constants";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import { auth, db } from "../firebase";
+import { setDoc, doc } from "firebase/firestore";
+import { getCurrentDate, getCurrentEpochTime } from "../utils/utility";
+import { Platform } from "react-native";
 
 const BibleVerseScreen = (props) => {
   const navigation = useNavigation();
@@ -24,13 +28,33 @@ const BibleVerseScreen = (props) => {
     bookName: bookName,
     content: content,
   } = props.route.params;
-  const [selectedVerses, setSelectedBook] = useState([]);
+  const [selectedVerses, setSelectedVerses] = useState([]);
 
   const addVerse = (verse) => {
     console.log(`Clicked verse: `, verse);
     if (!selectedVerses.includes(verse)) {
-      setSelectedBook([...selectedVerses, verse]);
+      setSelectedVerses([...selectedVerses, verse]);
+    } else {
+      const newVerses = selectedVerses.filter((item) => item !== verse);
+      setSelectedVerses(newVerses);
     }
+  };
+
+  const saveVerse = async (chapter) => {
+    await setDoc(doc(db, "daily", chapter), {
+      book: bookName,
+      chapter: chapter,
+      createdDate: getCurrentDate(),
+      createdTime: getCurrentEpochTime(),
+      verses: selectedVerses,
+    });
+    setSelectedVerses([]);
+    navigation.navigate("Home", {
+      firstName,
+      lastName,
+      email,
+      extraInfo,
+    });
   };
 
   console.log(`selected verses: `, selectedVerses);
@@ -60,7 +84,7 @@ const BibleVerseScreen = (props) => {
                       style={
                         selectedVerses.includes(verse)
                           ? styles.verse("black")
-                          : styles.verse("grey")
+                          : styles.verse("gray")
                       }
                     >
                       <Button
@@ -69,7 +93,7 @@ const BibleVerseScreen = (props) => {
                         }-${verse}`}
                         title={verse}
                         onPress={() => addVerse(verse)}
-                        color="white"
+                        color={Platform.OS === "ios" ? "white" : "gray"}
                       />
                     </View>
                   );
@@ -79,7 +103,15 @@ const BibleVerseScreen = (props) => {
         </ScrollView>
       </SafeAreaView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.saveButton} onPress={() => {}}>
+        <TouchableOpacity
+          style={
+            selectedVerses.length === 0
+              ? [styles.saveButton, styles.disabled]
+              : styles.saveButton
+          }
+          onPress={() => saveVerse(content.chapter)}
+          disabled={selectedVerses.length === 0}
+        >
           <Text style={styles.saveButtonText}>Save Verses</Text>
         </TouchableOpacity>
       </View>
@@ -139,8 +171,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
+  disabled: {
+    opacity: 0.3,
+    cursor: "not-allowed",
+  },
   saveButtonText: {
     color: "white",
     fontSize: 20,
+    fontWeight: "700",
   },
 });

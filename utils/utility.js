@@ -42,8 +42,12 @@ export const updateWeeklyRead = async (weeklyFlag, weeklyReadDate, email) => {
   });
 };
 
+export const getCurrentEpochTime = () => {
+  return new Date();
+};
+
 export const getCurrentDate = () => {
-  const currentDate = new Date();
+  const currentDate = getCurrentEpochTime();
   return `${currentDate.getFullYear()}-${getTwoDigitNum(
     currentDate.getMonth() + 1
   )}-${getTwoDigitNum(currentDate.getDate())}`;

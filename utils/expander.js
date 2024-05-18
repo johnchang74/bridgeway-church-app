@@ -21,8 +21,6 @@ export const Expander = ({
     setIsExpanded(!isExpanded);
   };
 
-  console.log(`cur: ${buttonText} - select: ${selectedBook}`);
-
   return (
     <Text
       style={isExpanded ? expandedStyle : collapsedStyle}

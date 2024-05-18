@@ -13,6 +13,7 @@ import { bible } from "../utils/constants";
 import { Expander } from "../utils/expander";
 import { useState } from "react";
 import { getChapterHeight } from "../utils/utility";
+import { Platform } from "react-native";
 
 const HolyBibleScreen = (props) => {
   const {
@@ -26,7 +27,6 @@ const HolyBibleScreen = (props) => {
   const [selectedChapter, setSelectedChapter] = useState();
 
   const chooseBook = (bookName) => {
-    console.log(`select: `, selectedBook);
     setSelectedBook(bookName);
   };
 
@@ -52,7 +52,6 @@ const HolyBibleScreen = (props) => {
       <SafeAreaView style={styles.contentContainer}>
         <ScrollView style={styles.scrollView}>
           {bible.map((book) => {
-            // console.log(`cur: ${book.title} - select: ${selectedBook}`);
             return (
               <Expander
                 buttonText={book.title}
@@ -69,8 +68,8 @@ const HolyBibleScreen = (props) => {
                         <View
                           style={
                             selectedChapter === chapter.chapter
-                              ? styles.chapter("black")
-                              : styles.chapter("grey")
+                              ? styles.chapter("#000000")
+                              : styles.chapter("#808080")
                           }
                         >
                           <Button
@@ -89,7 +88,7 @@ const HolyBibleScreen = (props) => {
                                 content: chapter,
                               });
                             }}
-                            color="white"
+                            color={Platform.OS === "ios" ? "white" : "gray"}
                           />
                         </View>
                       );
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     paddingTop: 10,
-    width: 340,
+    width: Platform.OS === "ios" ? 340 : 350,
     height: chapterHeight,
     marginLeft: 20,
     gap: 5,
