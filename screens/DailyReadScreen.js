@@ -18,8 +18,21 @@ import {
   getCurrentDate,
   updateDailyRead,
   updateWeeklyRead,
+  findAllDocs,
+  getVerses,
 } from "../utils/utility";
 import { Platform } from "react-native";
+import {
+  orderBy,
+  query,
+  limit,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  Timestamp,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 const DailyReadScreen = (props) => {
   const {
@@ -41,13 +54,36 @@ const DailyReadScreen = (props) => {
   const [completeCount, setCompleteCount] = useState(
     (checkDaily ? 1 : 0) + (checkWeekly ? 1 : 0) || 0
   );
+  const [dailyRead, setDailyRead] = useState({
+    book: "",
+    chapter: "",
+    verse: "",
+  });
   const navigation = useNavigation();
 
   useEffect(() => {
     if (completeCount === 0) {
       setCompleteCount((checkDaily ? 1 : 0) + (checkWeekly ? 1 : 0));
     }
+    getDailyVerses();
   }, [checkDaily, checkWeekly]);
+
+  const getDailyVerses = async () => {
+    const dailyDocs = await findAllDocs("daily");
+    let createdAt = 0;
+    dailyDocs?.forEach((item) => {
+      console.log(item);
+      if (createdAt < item.createdTime) {
+        createdAt = item.createdTime;
+        setDailyRead({
+          book: item.book,
+          chapter: item.chapter,
+          verse: getVerses(item.verses),
+        });
+      }
+    });
+    console.log(`created: ${createdAt}`);
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -95,8 +131,8 @@ const DailyReadScreen = (props) => {
         />
         <View style={styles.bibleVerses}>
           <ScrollView style={styles.scrollView}>
-            <Text>
-              In the second year of Darius the king, in the sixth month, on the
+            <>
+              {/* In the second year of Darius the king, in the sixth month, on the
               first day of the month, the word of the Lord came by the hand of
               Haggai the prophet to Zerubbabel the son of Shealtiel, governor of
               Judah, and to Joshua the son of Jehozadak, the high priest: 2
@@ -133,8 +169,11 @@ const DailyReadScreen = (props) => {
               in ruins? 5 Now, therefore, thus says the Lord of hosts: Consider
               your ways. 6 You have sown much, and harvested little. You eat,
               but you never have enough; you drink, but you never have your
-              fill.
-            </Text>
+              fill. */}
+              <Text>
+                {dailyRead.book}:{dailyRead.chapter}-{dailyRead.verse}
+              </Text>
+            </>
           </ScrollView>
         </View>
         <View style={styles.videoContainer(Platform.OS === "ios" ? 35 : 15)}>

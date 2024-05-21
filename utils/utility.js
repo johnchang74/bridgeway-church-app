@@ -1,4 +1,10 @@
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
 const getTwoDigitNum = (dayNum) => {
@@ -190,4 +196,24 @@ export const getChapterHeight = (bookName) => {
   } else {
     return 215;
   }
+};
+
+export const findAllDocs = async (collectionName) => {
+  const docRefs = await getDocs(collection(db, collectionName));
+  const res = [];
+  docRefs.forEach((item) => {
+    res.push(item.data());
+  });
+  return res;
+};
+
+export const getVerses = (verses) => {
+  let verseList = "";
+  verses.forEach((verse, index) => {
+    verseList += verse;
+    if (index < verses.length - 1) {
+      verseList += ",";
+    }
+  });
+  return verseList;
 };

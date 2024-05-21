@@ -10,60 +10,65 @@ import ChangeNameScreen from "./screens/ChangeNameScreen";
 import DailyReadScreen from "./screens/DailyReadScreen";
 import HolyBibleScreen from "./screens/HolyBibleScreen";
 import BibleVerseScreen from "./screens/BibleVerseScreen";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Stack = createNativeStackNavigator();
+// Create a client
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={LoginScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Home"
-          component={HomeScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Register"
-          component={RegisterScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Setting"
-          component={SettingScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="ChangePassword"
-          component={ChangePasswordScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="ChangeName"
-          component={ChangeNameScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="DailyRead"
-          component={DailyReadScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="HolyBible"
-          component={HolyBibleScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="BibleVerse"
-          component={BibleVerseScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Login"
+            component={LoginScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Home"
+            component={HomeScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Register"
+            component={RegisterScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Setting"
+            component={SettingScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="ChangePassword"
+            component={ChangePasswordScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="ChangeName"
+            component={ChangeNameScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="DailyRead"
+            component={DailyReadScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="HolyBible"
+            component={HolyBibleScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="BibleVerse"
+            component={BibleVerseScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
 
