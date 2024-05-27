@@ -71,6 +71,9 @@ const HolyBibleScreen = (props) => {
                               ? styles.chapter("#000000")
                               : styles.chapter("#808080")
                           }
+                          key={`${book.title.trim().toLowerCase()}-${
+                            chapter.chapter
+                          }`}
                         >
                           <Button
                             key={`${book.title.trim().toLowerCase()}-${

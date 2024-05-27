@@ -1,6 +1,7 @@
 export const bible = [
   {
     title: "Genesis",
+    key: "GEN",
     content: [
       {
         chapter: "1",
@@ -1789,6 +1790,7 @@ export const bible = [
   },
   {
     title: "Exodus",
+    key: "EXO",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -1834,6 +1836,7 @@ export const bible = [
   },
   {
     title: "Leviticus",
+    key: "LEV",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -1866,6 +1869,7 @@ export const bible = [
   },
   {
     title: "Numbers",
+    key: "NUM",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -1907,6 +1911,7 @@ export const bible = [
   },
   {
     title: "Deuteronomy",
+    key: "DEU",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -1946,6 +1951,7 @@ export const bible = [
   },
   {
     title: "Joshua",
+    key: "JOS",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -1975,6 +1981,7 @@ export const bible = [
   },
   {
     title: "Judges",
+    key: "JDG",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2001,6 +2008,7 @@ export const bible = [
   },
   {
     title: "Ruth",
+    key: "RUT",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2010,6 +2018,7 @@ export const bible = [
   },
   {
     title: "1 Samuel",
+    key: "1SA",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2046,6 +2055,7 @@ export const bible = [
   },
   {
     title: "2 Samuel",
+    key: "2SA",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2075,6 +2085,7 @@ export const bible = [
   },
   {
     title: "1 Kings",
+    key: "1KI",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2102,6 +2113,7 @@ export const bible = [
   },
   {
     title: "2 Kings",
+    key: "2KI",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2132,6 +2144,7 @@ export const bible = [
   },
   {
     title: "1 Chronicles",
+    key: "1CH",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2166,6 +2179,7 @@ export const bible = [
   },
   {
     title: "2 Chronicles",
+    key: "2CH",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2207,6 +2221,7 @@ export const bible = [
   },
   {
     title: "Ezra",
+    key: "EZR",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2222,6 +2237,7 @@ export const bible = [
   },
   {
     title: "Nehemiah",
+    key: "NEH",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2239,6 +2255,7 @@ export const bible = [
   },
   {
     title: "Esther",
+    key: "EST",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2254,6 +2271,7 @@ export const bible = [
   },
   {
     title: "Job",
+    key: "JOB",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2301,6 +2319,7 @@ export const bible = [
   },
   {
     title: "Psalm",
+    key: "PSA",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2456,6 +2475,7 @@ export const bible = [
   },
   {
     title: "Proverbs",
+    key: "PRO",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2492,6 +2512,7 @@ export const bible = [
   },
   {
     title: "Ecclesiastes",
+    key: "ECC",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2509,6 +2530,7 @@ export const bible = [
   },
   {
     title: "Song of Solomon",
+    key: "SNG",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2522,6 +2544,7 @@ export const bible = [
   },
   {
     title: "Isaiah",
+    key: "ISA",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2593,6 +2616,7 @@ export const bible = [
   },
   {
     title: "Jeremiah",
+    key: "JER",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2650,6 +2674,7 @@ export const bible = [
   },
   {
     title: "Lamentations",
+    key: "LAM",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2660,6 +2685,7 @@ export const bible = [
   },
   {
     title: "Ezekiel",
+    key: "EZK",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2713,6 +2739,7 @@ export const bible = [
   },
   {
     title: "Daniel",
+    key: "DAN",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2730,6 +2757,7 @@ export const bible = [
   },
   {
     title: "Hosea",
+    key: "HOS",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2749,6 +2777,7 @@ export const bible = [
   },
   {
     title: "Joel",
+    key: "JOL",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2757,6 +2786,7 @@ export const bible = [
   },
   {
     title: "Amos",
+    key: "AMO",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2770,10 +2800,12 @@ export const bible = [
   },
   {
     title: "Obadiah",
+    key: "OBA",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Jonah",
+    key: "JON",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2783,6 +2815,7 @@ export const bible = [
   },
   {
     title: "Micah",
+    key: "MIC",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2795,6 +2828,7 @@ export const bible = [
   },
   {
     title: "Nahum",
+    key: "NAM",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2803,6 +2837,7 @@ export const bible = [
   },
   {
     title: "Habakkuk",
+    key: "HAB",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2811,6 +2846,7 @@ export const bible = [
   },
   {
     title: "Zehpaniah",
+    key: "ZEP",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2819,6 +2855,7 @@ export const bible = [
   },
   {
     title: "Haggai",
+    key: "HAG",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2826,6 +2863,7 @@ export const bible = [
   },
   {
     title: "Zechariah",
+    key: "ZEC",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2845,6 +2883,7 @@ export const bible = [
   },
   {
     title: "Malachi",
+    key: "MAL",
     content: [
       { chapter: "1", verses: [] },
       { chapter: "2", verses: [] },
@@ -2854,110 +2893,137 @@ export const bible = [
   },
   {
     title: "Matthew",
+    key: "MAT",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Mark",
+    key: "MRK",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Luke",
+    key: "LUK",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "John",
+    key: "JHN",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Acts",
+    key: "ACT",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Romans",
+    key: "ROM",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Corinthians",
+    key: "1CO",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Corinthians",
+    key: "2CO",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Galatians",
+    key: "GAL",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Ephesians",
+    key: "EPH",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Philippians",
+    key: "PHP",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Colossians",
+    key: "COL",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Thessalonians",
+    key: "1TH",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Thessalonians",
+    key: "2TH",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Timothy",
+    key: "1TI",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Timothy",
+    key: "2TI",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Titus",
+    key: "TIT",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Philemon",
+    key: "PHM",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Hebrews",
+    key: "HEB",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "James",
+    key: "JAS",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 Peter",
+    key: "1PE",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 Peter",
+    key: "2PE",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "1 John",
+    key: "1JN",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "2 John",
+    key: "2JN",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "3 John",
+    key: "3JN",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Jude",
+    key: "JUD",
     content: [{ chapter: "1", verses: [] }],
   },
   {
     title: "Revelation",
+    key: "REV",
     content: [{ chapter: "1", verses: [] }],
   },
 ];

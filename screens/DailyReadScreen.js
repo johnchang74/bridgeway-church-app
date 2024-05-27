@@ -21,18 +21,8 @@ import {
   findAllDocs,
   getVerses,
 } from "../utils/utility";
-import { Platform } from "react-native";
-import {
-  orderBy,
-  query,
-  limit,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  Timestamp,
-} from "firebase/firestore";
-import { db } from "../firebase";
+import { Platform, ActivityIndicator } from "react-native";
+import { useFetchBibleBookChapterVerse } from "../utils/hooks";
 
 const DailyReadScreen = (props) => {
   const {
@@ -60,6 +50,11 @@ const DailyReadScreen = (props) => {
     verse: "",
   });
   const navigation = useNavigation();
+  const { data, isLoading } = useFetchBibleBookChapterVerse(
+    dailyRead.book,
+    dailyRead.chapter,
+    dailyRead.verse.split(",")
+  );
 
   useEffect(() => {
     if (completeCount === 0) {
@@ -71,19 +66,25 @@ const DailyReadScreen = (props) => {
   const getDailyVerses = async () => {
     const dailyDocs = await findAllDocs("daily");
     let createdAt = 0;
+    let bookName = "";
+    let chapter = "";
+    let verseNumbers = "";
     dailyDocs?.forEach((item) => {
-      console.log(item);
       if (createdAt < item.createdTime) {
         createdAt = item.createdTime;
-        setDailyRead({
-          book: item.book,
-          chapter: item.chapter,
-          verse: getVerses(item.verses),
-        });
+        bookName = item.book;
+        chapter = item.chapter;
+        verseNumbers = getVerses(item.verses);
       }
     });
-    console.log(`created: ${createdAt}`);
+    setDailyRead({
+      book: bookName,
+      chapter: chapter,
+      verse: verseNumbers,
+    });
   };
+
+  console.log(`verse content: `, data?.text);
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -132,46 +133,15 @@ const DailyReadScreen = (props) => {
         <View style={styles.bibleVerses}>
           <ScrollView style={styles.scrollView}>
             <>
-              {/* In the second year of Darius the king, in the sixth month, on the
-              first day of the month, the word of the Lord came by the hand of
-              Haggai the prophet to Zerubbabel the son of Shealtiel, governor of
-              Judah, and to Joshua the son of Jehozadak, the high priest: 2
-              “Thus says the Lord of hosts: These people say the time has not
-              yet come to rebuild the house of the Lord.” 3 Then the word of the
-              Lord came by the hand of Haggai the prophet, 4 “Is it a time for
-              you yourselves to dwell in your paneled houses, while this house
-              lies in ruins? 5 Now, therefore, thus says the Lord of hosts:
-              Consider your ways. 6 You have sown much, and harvested little.
-              You eat, but you never have enough; you drink, but you never have
-              your fill. You clothe yourselves, but no one is warm. And he who
-              earns wages does so to put them into a bag with holes. In the
-              second year of Darius the king, in the sixth month, on the first
-              day of the month, the word of the Lord came by the hand of Haggai
-              the prophet to Zerubbabel the son of Shealtiel, governor of Judah,
-              and to Joshua the son of Jehozadak, the high priest: 2 “Thus says
-              the Lord of hosts: These people say the time has not yet come to
-              rebuild the house of the Lord.” 3 Then the word of the Lord came
-              by the hand of Haggai the prophet, 4 “Is it a time for you
-              yourselves to dwell in your paneled houses, while this house lies
-              in ruins? 5 Now, therefore, thus says the Lord of hosts: Consider
-              your ways. 6 You have sown much, and harvested little. You eat,
-              but you never have enough; you drink, but you never have your
-              fill. You clothe yourselves, but no one is warm. And he who earns
-              wages does so to put them into a bag with holes. In the second
-              year of Darius the king, in the sixth month, on the first day of
-              the month, the word of the Lord came by the hand of Haggai the
-              prophet to Zerubbabel the son of Shealtiel, governor of Judah, and
-              to Joshua the son of Jehozadak, the high priest: 2 “Thus says the
-              Lord of hosts: These people say the time has not yet come to
-              rebuild the house of the Lord.” 3 Then the word of the Lord came
-              by the hand of Haggai the prophet, 4 “Is it a time for you
-              yourselves to dwell in your paneled houses, while this house lies
-              in ruins? 5 Now, therefore, thus says the Lord of hosts: Consider
-              your ways. 6 You have sown much, and harvested little. You eat,
-              but you never have enough; you drink, but you never have your
-              fill. */}
               <Text>
                 {dailyRead.book}:{dailyRead.chapter}-{dailyRead.verse}
+              </Text>
+              <Text>
+                {isLoading ? (
+                  <ActivityIndicator size="small" color="#0000ff" />
+                ) : (
+                  data?.text
+                )}
               </Text>
             </>
           </ScrollView>
@@ -186,7 +156,9 @@ const DailyReadScreen = (props) => {
             checkedColor="#09DEC5"
             title="Complete"
             size={35}
-            containerStyle={styles.weeklyCheckbox}
+            containerStyle={styles.weeklyCheckbox(
+              Platform.OS === "ios" ? "29%" : "31%"
+            )}
             onPress={() => {
               if (!checkWeekly) {
                 setCheckWeekly(!checkWeekly ? !checkWeekly : checkWeekly);
@@ -284,14 +256,14 @@ const styles = StyleSheet.create({
     marginTop: marginTopValue,
     alignItems: "center",
   }),
-  weeklyCheckbox: {
+  weeklyCheckbox: (marginLeft) => ({
     width: "10%",
     height: 50,
     backgroundColor: "white",
-    marginLeft: "29%",
+    marginLeft: marginLeft,
     marginTop: -15,
     alignItems: "center",
-  },
+  }),
   instructionContainer: {
     marginTop: 12,
     marginLeft: 115,

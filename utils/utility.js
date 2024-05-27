@@ -6,6 +6,7 @@ import {
   collection,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { bible } from "./constants";
 
 const getTwoDigitNum = (dayNum) => {
   let dayString = dayNum.toString();
@@ -216,4 +217,13 @@ export const getVerses = (verses) => {
     }
   });
   return verseList;
+};
+
+export const getBibleBookKey = (bookName) => {
+  return bible.map((book) => {
+    const title = book.title;
+    if (title === bookName) {
+      return book.key;
+    }
+  })[0];
 };

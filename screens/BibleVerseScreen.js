@@ -86,6 +86,9 @@ const BibleVerseScreen = (props) => {
                           ? styles.verse("black")
                           : styles.verse("gray")
                       }
+                      key={`${bookName.trim().toLowerCase()}-${
+                        content.chapter
+                      }-${verse}`}
                     >
                       <Button
                         key={`${bookName.trim().toLowerCase()}-${
