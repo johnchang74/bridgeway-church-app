@@ -94,7 +94,7 @@ const LoginScreen = () => {
         </Text>
         <Text
           style={styles.forgotPassword}
-          onPress={() => navigation.navigate("changePassword")}
+          onPress={() => navigation.navigate("EnterEmail")}
         >
           Forgot password?
         </Text>

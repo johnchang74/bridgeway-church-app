@@ -24,7 +24,7 @@ const SettingScreen = (props) => {
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        alert("Logged out successfully!");
+        // alert("Logged out successfully!");
         navigation.navigate("Login", {
           firstName,
           lastName,

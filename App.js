@@ -6,6 +6,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import SettingScreen from "./screens/SettingScreen";
 import ChangePasswordScreen from "./screens/ChangePasswordScreen";
+import EnterEmailScreen from "./screens/EnterEmailScreen";
 import ChangeNameScreen from "./screens/ChangeNameScreen";
 import DailyReadScreen from "./screens/DailyReadScreen";
 import HolyBibleScreen from "./screens/HolyBibleScreen";
@@ -45,6 +46,11 @@ export default function App() {
             options={{ headerShown: false }}
             name="ChangePassword"
             component={ChangePasswordScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="EnterEmail"
+            component={EnterEmailScreen}
           />
           <Stack.Screen
             options={{ headerShown: false }}
