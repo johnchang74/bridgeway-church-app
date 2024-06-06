@@ -103,21 +103,21 @@ const BibleVerseScreen = (props) => {
                 })
               : ""}
           </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={
+                selectedVerses.length === 0
+                  ? [styles.saveButton, styles.disabled]
+                  : styles.saveButton
+              }
+              onPress={() => saveVerse(content.chapter)}
+              disabled={selectedVerses.length === 0}
+            >
+              <Text style={styles.saveButtonText}>Save Verses</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </SafeAreaView>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={
-            selectedVerses.length === 0
-              ? [styles.saveButton, styles.disabled]
-              : styles.saveButton
-          }
-          onPress={() => saveVerse(content.chapter)}
-          disabled={selectedVerses.length === 0}
-        >
-          <Text style={styles.saveButtonText}>Save Verses</Text>
-        </TouchableOpacity>
-      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   }),
   buttonContainer: {
-    marginTop: 350,
+    marginTop: 50,
     alignItems: "center",
   },
   saveButton: {
