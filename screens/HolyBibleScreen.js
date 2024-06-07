@@ -51,56 +51,57 @@ const HolyBibleScreen = (props) => {
       </Pressable>
       <SafeAreaView style={styles.contentContainer}>
         <ScrollView style={styles.scrollView}>
-          {bible.map((book) => {
-            return (
-              <Expander
-                buttonText={book.title}
-                key={book.title.trim().toLowerCase()}
-                collapsedStyle={styles.collapsedBooks}
-                expandedStyle={styles.expandedBooks}
-                selectedBook={selectedBook}
-                expand={book.title === selectedBook}
-                selectBook={() => chooseBook(book.title)}
-                children={
-                  <View style={styles.chapters(getChapterHeight(book.title))}>
-                    {book.content.map((chapter) => {
-                      return (
-                        <View
-                          style={
-                            selectedChapter === chapter.chapter
-                              ? styles.chapter("#000000")
-                              : styles.chapter("#808080")
-                          }
-                          key={`${book.title.trim().toLowerCase()}-${
-                            chapter.chapter
-                          }`}
-                        >
-                          <Button
+          {bible &&
+            bible.map((book) => {
+              return (
+                <Expander
+                  buttonText={book.title}
+                  key={book.title.trim().toLowerCase()}
+                  collapsedStyle={styles.collapsedBooks}
+                  expandedStyle={styles.expandedBooks}
+                  selectedBook={selectedBook}
+                  expand={book.title === selectedBook}
+                  selectBook={() => chooseBook(book.title)}
+                  children={
+                    <View style={styles.chapters(getChapterHeight(book.title))}>
+                      {book.content.map((chapter) => {
+                        return (
+                          <View
+                            style={
+                              selectedChapter === chapter.chapter
+                                ? styles.chapter("#000000")
+                                : styles.chapter("#808080")
+                            }
                             key={`${book.title.trim().toLowerCase()}-${
                               chapter.chapter
                             }`}
-                            title={chapter.chapter}
-                            onPress={() => {
-                              chooseChapter(chapter.chapter);
-                              navigation.navigate("BibleVerse", {
-                                firstName,
-                                lastName,
-                                email,
-                                extraInfo,
-                                bookName: book.title,
-                                content: chapter,
-                              });
-                            }}
-                            color={Platform.OS === "ios" ? "white" : "gray"}
-                          />
-                        </View>
-                      );
-                    })}
-                  </View>
-                }
-              />
-            );
-          })}
+                          >
+                            <Button
+                              key={`${book.title.trim().toLowerCase()}-${
+                                chapter.chapter
+                              }`}
+                              title={chapter.chapter}
+                              onPress={() => {
+                                chooseChapter(chapter.chapter);
+                                navigation.navigate("BibleVerse", {
+                                  firstName,
+                                  lastName,
+                                  email,
+                                  extraInfo,
+                                  bookName: book.title,
+                                  content: chapter,
+                                });
+                              }}
+                              color={Platform.OS === "ios" ? "white" : "gray"}
+                            />
+                          </View>
+                        );
+                      })}
+                    </View>
+                  }
+                />
+              );
+            })}
         </ScrollView>
       </SafeAreaView>
     </KeyboardAvoidingView>
