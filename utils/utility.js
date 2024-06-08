@@ -191,7 +191,8 @@ export const getChapterHeight = (bookName) => {
     bookName === "Habakkuk" ||
     bookName === "Zehpaniah" ||
     bookName === "Haggai" ||
-    bookName === "Malachi"
+    bookName === "Malachi" ||
+    bookName === "Matthew"
   ) {
     return 40;
   } else {
