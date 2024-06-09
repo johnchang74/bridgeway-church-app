@@ -161,12 +161,21 @@ export const getChapterHeight = (bookName) => {
   } else if (
     bookName === "Joshua" ||
     bookName === "Leviticus" ||
-    bookName === "2 Kings"
+    bookName === "2 Kings" ||
+    bookName === "Matthew" ||
+    bookName === "2 Samuel" ||
+    bookName === "1 Kings" ||
+    bookName === "Luke" ||
+    bookName === "Acts"
   ) {
-    return 190;
-  } else if (bookName === "2 Samuel" || bookName === "1 Kings") {
-    return 190;
-  } else if (bookName === "Judges") {
+    return 195;
+  } else if (
+    bookName === "Judges" ||
+    bookName === "Mark" ||
+    bookName === "John" ||
+    bookName === "Romans" ||
+    bookName === "1 Corinthians"
+  ) {
     return 140;
   } else if (
     bookName === "Ezra" ||
@@ -177,9 +186,31 @@ export const getChapterHeight = (bookName) => {
     bookName === "Daniel" ||
     bookName === "Hosea" ||
     bookName === "Amos" ||
-    bookName === "Zechariah"
+    bookName === "Zechariah" ||
+    bookName === "2 Corinthians" ||
+    bookName === "Hebrews"
   ) {
     return 90;
+  } else if (
+    bookName === "Galatians" ||
+    bookName === "Ephesians" ||
+    bookName === "Philippians" ||
+    bookName === "Colossians" ||
+    bookName === "1 Thessalonians" ||
+    bookName === "2 Thessalonians" ||
+    bookName === "1 Timothy" ||
+    bookName === "2 Timothy" ||
+    bookName === "Titus" ||
+    bookName === "Philemon" ||
+    bookName === "James" ||
+    bookName === "1 Peter" ||
+    bookName === "2 Peter" ||
+    bookName === "1 John" ||
+    bookName === "2 John" ||
+    bookName === "3 John" ||
+    bookName === "Jude"
+  ) {
+    return 45;
   } else if (
     bookName === "Ruth" ||
     bookName === "Lamentations" ||
