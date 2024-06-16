@@ -11,16 +11,24 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 
 const RegisterScreen = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorRegister, setErrorRegister] = useState({
+    state: false,
+    reason: "",
+  });
   const navigation = useNavigation();
 
   const handleSignUp = () => {
+    setErrorRegister({
+      state: false,
+      reason: "",
+    });
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredentials) => {
         await setDoc(doc(db, "users", email), {
@@ -44,7 +52,12 @@ const RegisterScreen = () => {
         setEmail("");
         setPassword("");
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        setErrorRegister({
+          state: true,
+          reason: `${error.message.replace("Firebase: ", "")}`,
+        });
+      });
   };
 
   return (
@@ -95,6 +108,11 @@ const RegisterScreen = () => {
         <TouchableOpacity onPress={handleSignUp} style={styles.button}>
           <Text style={styles.buttonText}>Create Account</Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        {errorRegister.state ? (
+          <Text style={styles.errorRegister}>{errorRegister.reason}</Text>
+        ) : null}
       </View>
       <View style={styles.signUpContainer}>
         <Text>
@@ -184,5 +202,11 @@ const styles = StyleSheet.create({
   },
   signUpText: {
     color: "blue",
+  },
+  errorRegister: {
+    marginTop: 20,
+    color: "red",
+    fontWeight: "500",
+    fontSize: 15,
   },
 });

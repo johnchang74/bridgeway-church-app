@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Alert,
 } from "react-native";
 import { auth, db } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -16,38 +17,35 @@ import { doc, getDoc } from "firebase/firestore";
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState(false);
+  const [errorLoginReason, setErrorLoginReason] = useState("");
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.navigate("Home", {});
-      }
-    });
-    return unsubscribe;
-  }, []);
-
   const handleLogin = () => {
+    setErrorLogin(false);
+    setErrorLoginReason("");
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredentials) => {
         const docRef = doc(db, "users", email);
         const docSnap = await getDoc(docRef);
+        console.log(`docSnap.exists(): `, docSnap.exists());
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
           const user = userCredentials.user;
           console.log(`Logged in with `, user.email);
           navigation.navigate("Home", docSnap.data());
         } else {
-          // docSnap.data() will be undefined in this case
-          console.log("No such document!");
+          setErrorLogin(true);
+          setErrorLoginReason("No such email account exists!");
+          navigation.navigate("Login");
         }
-        setEmail("");
-        setPassword("");
       })
       .catch((error) => {
-        console.log(error.message);
-        alert(`Invalid email/password for ${email}`);
+        setErrorLogin(true);
+        setErrorLoginReason("Invalid email/password!");
       });
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -80,6 +78,11 @@ const LoginScreen = () => {
         <TouchableOpacity onPress={handleLogin} style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        {errorLogin ? (
+          <Text style={styles.noAccount}>{errorLoginReason}</Text>
+        ) : null}
       </View>
       <View style={styles.signUpContainer}>
         <Text>
@@ -174,5 +177,11 @@ const styles = StyleSheet.create({
   forgotPassword: {
     marginTop: 15,
     color: "blue",
+  },
+  noAccount: {
+    marginTop: 20,
+    color: "red",
+    fontWeight: "500",
+    fontSize: 15,
   },
 });

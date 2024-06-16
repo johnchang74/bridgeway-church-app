@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
   StyleSheet,
@@ -6,9 +7,12 @@ import {
   View,
   Image,
   Pressable,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { getAuth, signOut } from "firebase/auth";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const SettingScreen = (props) => {
   const {
@@ -17,14 +21,48 @@ const SettingScreen = (props) => {
     email: email,
     extraInfo: extraInfo,
   } = props.route.params;
-  console.log(`firstName: ${firstName} lastName: ${lastName}`);
+  const [error, setError] = useState({
+    state: false,
+    reason: "",
+  });
   const navigation = useNavigation();
   const auth = getAuth();
+  const user = auth.currentUser;
+
+  const confirmDeleteMyAccount = () => {
+    setError({
+      state: false,
+      reason: "",
+    });
+    Alert.alert(
+      "You are about to delete your account",
+      "Are you sure that you want to delete your account?",
+      [
+        {
+          text: "Cancel",
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            try {
+              await user?.delete();
+              await deleteDoc(doc(db, "users", email));
+            } catch (err) {
+              setError({
+                state: true,
+                reason: `${err.message}`,
+              });
+            }
+            navigation.navigate("Login");
+          },
+        },
+      ]
+    );
+  };
 
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        // alert("Logged out successfully!");
         navigation.navigate("Login", {
           firstName,
           lastName,
@@ -32,8 +70,11 @@ const SettingScreen = (props) => {
           extraInfo,
         });
       })
-      .catch((error) => {
-        throw error;
+      .catch((err) => {
+        setError({
+          state: true,
+          reason: `${err.message}`,
+        });
       });
   };
 
@@ -96,10 +137,19 @@ const SettingScreen = (props) => {
       >
         <Text style={styles.changePassword}>Change password</Text>
       </Pressable>
+      <Pressable
+        onPress={() => confirmDeleteMyAccount()}
+        style={styles.changePasswordContainer}
+      >
+        <Text style={styles.deleteMyAccount}>Delete my account</Text>
+      </Pressable>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={logOut} style={styles.button}>
           <Text style={styles.buttonText}>Log Out</Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        {error.state ? <Text style={styles.error}>{error.reason}</Text> : null}
       </View>
     </KeyboardAvoidingView>
   );
@@ -163,13 +213,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   changePassword: {
+    marginTop: 20,
     fontWeight: "700",
-    fontSize: 16,
+    fontSize: 19,
+    color: "green",
+  },
+  deleteMyAccount: {
+    marginTop: 20,
+    fontWeight: "700",
+    fontSize: 19,
+    color: "red",
   },
   buttonContainer: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 150,
+    marginTop: 110,
   },
   button: {
     backgroundColor: "#09DEC5",
@@ -189,5 +247,11 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     height: "18%",
     width: "10%",
+  },
+  error: {
+    marginTop: 20,
+    color: "red",
+    fontWeight: "500",
+    fontSize: 15,
   },
 });
