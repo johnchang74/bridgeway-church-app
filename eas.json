@@ -27,14 +27,16 @@
       "env": {
         "BIBLE_API_KEY": "ca1cbd623567b4d8c4a153bc9625235e",
         "REACT_EDITOR": "atom"
+      },
+      "android": {
+        "image": "latest"
       }
     }
   },
   "submit": {
     "production": {
       "android": {
-        "track": "internal",
-        "image": "latest"
+        "track": "internal"
       }
     }
   }
