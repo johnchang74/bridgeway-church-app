@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "45662878713",
+    "project_id": "bridgeway-544e1",
+    "storage_bucket": "bridgeway-544e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45662878713:android:b453226eaa4cb0dc2d1b28",
+        "android_client_info": {
+          "package_name": "bridgeway.church"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaxrZGT8qRamO03VXoAVKQn7MaxTN3T7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
