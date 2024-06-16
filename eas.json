@@ -36,7 +36,7 @@
   "submit": {
     "production": {
       "android": {
-        "serviceAccountKeyPath": "./bridgeway-544e1-firebase-adminsdk-h5t99-b28f5befa3.json",
+        "serviceAccountKeyPath": "./bridgeway-544e1-firebase-adminsdk-h5t99-256c9ae1c2.json",
         "track": "internal"
       }
     }

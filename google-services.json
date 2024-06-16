@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:45662878713:android:b453226eaa4cb0dc2d1b28",
+        "mobilesdk_app_id": "1:45662878713:android:0da4b74a78814cb02d1b28",
         "android_client_info": {
-          "package_name": "bridgeway.church"
+          "package_name": "com.johnchang74.bridgewaychurchapp"
         }
       },
       "oauth_client": [],
