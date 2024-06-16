@@ -9,7 +9,8 @@
     },
     "preview": {
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "image": "latest"
       }
     },
     "preview2": {
@@ -29,6 +30,7 @@
         "REACT_EDITOR": "atom"
       },
       "android": {
+        "buildType": "apk",
         "image": "latest"
       }
     }
