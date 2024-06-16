@@ -33,7 +33,8 @@
   "submit": {
     "production": {
       "android": {
-        "track": "internal"
+        "track": "internal",
+        "image": "latest"
       }
     }
   }
