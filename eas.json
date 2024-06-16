@@ -1,0 +1,36 @@
+{
+  "cli": {
+    "version": ">= 10.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "preview4": {
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "BIBLE_API_KEY": "ca1cbd623567b4d8c4a153bc9625235e",
+        "REACT_EDITOR": "atom"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
