@@ -116,7 +116,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   logo: {
-    alignItems: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   greeting: {
     justifyContent: "center",
