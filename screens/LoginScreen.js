@@ -28,11 +28,8 @@ const LoginScreen = () => {
       .then(async (userCredentials) => {
         const docRef = doc(db, "users", email);
         const docSnap = await getDoc(docRef);
-        console.log(`docSnap.exists(): `, docSnap.exists());
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
           const user = userCredentials.user;
-          console.log(`Logged in with `, user.email);
           navigation.navigate("Home", docSnap.data());
         } else {
           setErrorLogin(true);

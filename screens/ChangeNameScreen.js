@@ -33,7 +33,6 @@ const ChangeNameScreen = (props) => {
       alert("First name and/or last name is blank!");
     } else {
       const userRef = doc(db, "users", email);
-      console.log(`userRef: `, userRef);
       await updateDoc(userRef, {
         firstName: fName,
         lastName: lName,
@@ -42,7 +41,6 @@ const ChangeNameScreen = (props) => {
           alert("Names updated succeessfully!");
           setfName("");
           setlName("");
-          console.log(`fName: ${fName} lName: ${lName}`);
           navigation.navigate("Setting", {
             firstName: fName,
             lastName: lName,

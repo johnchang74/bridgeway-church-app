@@ -23,6 +23,7 @@ import {
 } from "../utils/utility";
 import { Platform, ActivityIndicator } from "react-native";
 import { useFetchBibleBookChapterVerse } from "../utils/hooks";
+import { removeNewlines } from "../utils/utility";
 
 const DailyReadScreen = (props) => {
   const {
@@ -57,9 +58,7 @@ const DailyReadScreen = (props) => {
   );
 
   useEffect(() => {
-    if (completeCount === 0) {
-      setCompleteCount((checkDaily ? 1 : 0) + (checkWeekly ? 1 : 0));
-    }
+    setCompleteCount((checkDaily ? 1 : 0) + (checkWeekly ? 1 : 0));
     getDailyVerses();
   }, [checkDaily, checkWeekly]);
 
@@ -83,8 +82,6 @@ const DailyReadScreen = (props) => {
       verse: verseNumbers,
     });
   };
-
-  console.log(`verse content: `, data?.text);
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -119,10 +116,8 @@ const DailyReadScreen = (props) => {
               Platform.OS === "ios" ? -6 : -30
             )}
             onPress={() => {
-              if (!checkDaily) {
-                setCheckDaily(!checkDaily ? !checkDaily : checkDaily);
-                updateDailyRead(true, getCurrentDate(), email);
-              }
+              setCheckDaily(!checkDaily);
+              updateDailyRead(checkDaily, getCurrentDate(), email);
             }}
           />
         </View>
@@ -133,14 +128,14 @@ const DailyReadScreen = (props) => {
         <View style={styles.bibleVerses}>
           <ScrollView style={styles.scrollView}>
             <>
-              <Text>
+              <Text style={{ fontWeight: "600", fontSize: 15 }}>
                 {dailyRead.book}:{dailyRead.chapter}-{dailyRead.verse}
               </Text>
-              <Text>
+              <Text style={{ marginTop: 10 }}>
                 {isLoading ? (
                   <ActivityIndicator size="small" color="#0000ff" />
                 ) : (
-                  data?.text
+                  removeNewlines(data.verses)
                 )}
               </Text>
             </>
@@ -160,10 +155,8 @@ const DailyReadScreen = (props) => {
               Platform.OS === "ios" ? "29%" : "31%"
             )}
             onPress={() => {
-              if (!checkWeekly) {
-                setCheckWeekly(!checkWeekly ? !checkWeekly : checkWeekly);
-                updateWeeklyRead(true, getCurrentDate(), email);
-              }
+              setCheckWeekly(!checkWeekly);
+              updateWeeklyRead(checkWeekly, getCurrentDate(), email);
             }}
           />
         </View>
@@ -179,14 +172,16 @@ const DailyReadScreen = (props) => {
       <View style={styles.instructionContainer}>
         <TouchableOpacity
           style={styles.instruction}
-          onPress={() =>
+          onPress={() => {
+            extraInfo.daily = checkDaily;
+            extraInfo.weekly = checkWeekly;
             navigation.navigate("Home", {
               firstName,
               lastName,
               email,
               extraInfo,
-            })
-          }
+            });
+          }}
         >
           <Text style={styles.instructionText}>
             {completeCount}/2 Completed

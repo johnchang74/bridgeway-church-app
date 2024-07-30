@@ -26,7 +26,6 @@ const HomeScreen = (props) => {
     email: email,
     extraInfo: extraInfo,
   } = props.route.params;
-  console.log(`props.route.params: `, props.route.params);
   const currentDate = new Date();
   const month = getMonthDesc(currentDate.getMonth() + 1);
   const day = currentDate.getDate();
@@ -93,10 +92,12 @@ const HomeScreen = (props) => {
         <Text />
         <Text />
         <Text style={styles.daily}>
-          Daily {extraInfo && checkDaily() ? 1 : 0}/1
+          {/* Daily {extraInfo && checkDaily() ? 1 : 0}/1 */}
+          Daily {extraInfo && extraInfo.daily ? 1 : 0}/1
         </Text>
         <Text style={styles.weekly}>
-          Weekly {extraInfo && checkWeekly() ? 1 : 0}/1
+          {/* Weekly {extraInfo && checkWeekly() ? 1 : 0}/1 */}
+          Weekly {extraInfo && extraInfo.weekly ? 1 : 0}/1
         </Text>
       </View>
       <View style={styles.buttonContainer}>

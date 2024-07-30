@@ -31,7 +31,6 @@ const HolyBibleScreen = (props) => {
   };
 
   const chooseChapter = (chapter) => {
-    console.log(`selcet chapter: `, chapter);
     setSelectedChapter(chapter);
   };
 

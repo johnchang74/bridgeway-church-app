@@ -45,7 +45,6 @@ const RegisterScreen = () => {
         });
 
         const user = userCredentials.user;
-        console.log(`Registered with `, user.email);
         navigation.navigate("Login");
         setFirstName("");
         setLastName("");

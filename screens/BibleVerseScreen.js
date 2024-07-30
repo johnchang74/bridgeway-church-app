@@ -31,7 +31,6 @@ const BibleVerseScreen = (props) => {
   const [selectedVerses, setSelectedVerses] = useState([]);
 
   const addVerse = (verse) => {
-    console.log(`Clicked verse: `, verse);
     if (!selectedVerses.includes(verse)) {
       setSelectedVerses([...selectedVerses, verse]);
     } else {
@@ -57,8 +56,6 @@ const BibleVerseScreen = (props) => {
     });
   };
 
-  console.log(`selected verses: `, selectedVerses);
-
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Pressable
@@ -78,7 +75,6 @@ const BibleVerseScreen = (props) => {
           <View style={styles.verses}>
             {content.verses
               ? content.verses.map((verse) => {
-                  console.log(`verse: ${verse} - bookName: ${bookName}`);
                   return (
                     <View
                       style={

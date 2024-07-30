@@ -17,12 +17,16 @@ const getTwoDigitNum = (dayNum) => {
   }
 };
 
+export const removeNewlines = (content) => {
+  const verses = content?.map((verse) => {
+    return `${verse.verse} ${verse.text.replace(/\n/g, " ")}`;
+  });
+  return verses;
+};
+
 export const getDailyRead = async (email) => {
   const docRef = doc(db, "users", email);
   const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-    console.log(`docSnap.data(): `, docSnap.data());
-  }
 };
 
 export const updateDailyRead = async (dailyFlag, dailyReadDate, email) => {
@@ -36,9 +40,6 @@ export const updateDailyRead = async (dailyFlag, dailyReadDate, email) => {
 export const getWeeklyRead = async (email) => {
   const docRef = doc(db, "users", email);
   const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-    console.log(`docSnap.data(): `, docSnap.data());
-  }
 };
 
 export const updateWeeklyRead = async (weeklyFlag, weeklyReadDate, email) => {
