@@ -131,7 +131,7 @@ const DailyReadScreen = (props) => {
               <Text style={{ fontWeight: "600", fontSize: 15 }}>
                 {dailyRead.book}:{dailyRead.chapter}-{dailyRead.verse}
               </Text>
-              <Text style={{ marginTop: 10 }}>
+              <Text style={{ marginTop: 5 }}>
                 {isLoading ? (
                   <ActivityIndicator size="small" color="#0000ff" />
                 ) : (
@@ -152,7 +152,7 @@ const DailyReadScreen = (props) => {
             title="Complete"
             size={35}
             containerStyle={styles.weeklyCheckbox(
-              Platform.OS === "ios" ? "29%" : "31%"
+              Platform.OS === "ios" ? "29%" : "auto"
             )}
             onPress={() => {
               setCheckWeekly(!checkWeekly);
@@ -160,7 +160,10 @@ const DailyReadScreen = (props) => {
             }}
           />
         </View>
-        <Divider bold={true} style={styles.divider} />
+        <Divider
+          bold={true}
+          style={styles.divider(Platform.OS === "ios" ? -7 : -5)}
+        />
         <View style={styles.youtube}>
           <YoutubePlayer
             height={200}
@@ -202,6 +205,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     marginTop: -110,
     marginLeft: 20,
+    overflowY: "scroll",
   },
   title: {
     fontWeight: "800",
@@ -224,7 +228,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   scrollView: {
-    maxHeight: 350,
+    maxHeight: 310,
   },
   videoContainer: (marginTopValue) => ({
     marginTop: marginTopValue,
@@ -247,7 +251,7 @@ const styles = StyleSheet.create({
     width: "10%",
     height: "93%",
     backgroundColor: "white",
-    marginLeft: "45%",
+    marginLeft: "auto",
     marginTop: marginTopValue,
     alignItems: "center",
   }),
@@ -260,9 +264,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   }),
   instructionContainer: {
-    marginTop: 12,
-    marginLeft: 115,
-    width: "40%",
+    marginTop: "10%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "45%",
   },
   instruction: {
     backgroundColor: "#09DEC5",

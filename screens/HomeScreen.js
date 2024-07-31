@@ -79,18 +79,9 @@ const HomeScreen = (props) => {
         <Text style={styles.month}>{month}</Text>
         <Text style={styles.date}>{day}</Text>
         <Text style={styles.dayOfDate}>{dayOfDate}</Text>
-        <Text />
-        <Text />
-        <Text />
         <Text style={styles.greeting}>
           {greeting}, {firstName}!
         </Text>
-        <Text />
-        <Text />
-        <Text />
-        <Text />
-        <Text />
-        <Text />
         <Text style={styles.daily}>
           {/* Daily {extraInfo && checkDaily() ? 1 : 0}/1 */}
           Daily {extraInfo && extraInfo.daily ? 1 : 0}/1
@@ -168,11 +159,13 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     color: "white",
+    marginTop: 30,
   },
   daily: {
     fontWeight: "800",
     fontSize: 18,
     color: "white",
+    marginTop: 70,
   },
   weekly: {
     fontWeight: "800",
