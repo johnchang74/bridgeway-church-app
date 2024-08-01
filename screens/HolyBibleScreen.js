@@ -11,7 +11,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { bible } from "../utils/constants";
 import { Expander } from "../utils/expander";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { getChapterHeight } from "../utils/utility";
 import { Platform } from "react-native";
 
@@ -25,6 +25,7 @@ const HolyBibleScreen = (props) => {
   const navigation = useNavigation();
   const [selectedBook, setSelectedBook] = useState();
   const [selectedChapter, setSelectedChapter] = useState();
+  const scrollViewRef = useRef();
 
   const chooseBook = (bookName) => {
     setSelectedBook(bookName);
@@ -49,7 +50,21 @@ const HolyBibleScreen = (props) => {
         <Image style={styles.arrow} source={require("../assets/arrow.png")} />
       </Pressable>
       <SafeAreaView style={styles.contentContainer}>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView
+          style={styles.scrollView}
+          onContentSizeChange={() => {
+            if (
+              selectedBook === "1 John" ||
+              selectedBook === "2 John" ||
+              selectedBook === "3 John" ||
+              selectedBook === "Jude" ||
+              selectedBook === "Revelation"
+            ) {
+              scrollViewRef.current?.scrollToEnd();
+            }
+          }}
+          ref={scrollViewRef}
+        >
           {bible &&
             bible.map((book) => {
               return (

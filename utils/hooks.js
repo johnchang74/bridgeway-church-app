@@ -29,7 +29,7 @@ const fetchBookChapterVerse = async (bookName, chapter, verses) => {
 export const useFetchBibleBookChapterVerse = (bookName, chapter, verses) => {
   const bookChapterVerses = useQuery({
     queryKey: [bookName, chapter, verses],
-    queryFn: () => fetchBookChapterVerse(bookName, chapter, verses),
+    queryFn: async () => await fetchBookChapterVerse(bookName, chapter, verses),
   });
   return bookChapterVerses;
 };

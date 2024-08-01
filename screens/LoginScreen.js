@@ -30,6 +30,8 @@ const LoginScreen = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const user = userCredentials.user;
+          console.log(`userCredentials: `, userCredentials);
+          console.log(`user: `, user);
           navigation.navigate("Home", docSnap.data());
         } else {
           setErrorLogin(true);
