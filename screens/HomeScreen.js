@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: "60%",
+    maxHeight: "65%",
   },
   month: {
     fontWeight: "800",

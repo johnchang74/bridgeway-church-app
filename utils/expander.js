@@ -23,6 +23,7 @@ export const Expander = ({
 
   return (
     <Text
+      allowFontScaling={false}
       style={isExpanded ? expandedStyle : collapsedStyle}
       key={buttonText.trim().toLowerCase()}
       onPress={toggleExpand}

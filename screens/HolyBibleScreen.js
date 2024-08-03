@@ -7,13 +7,14 @@ import {
   Button,
   SafeAreaView,
   ScrollView,
+  Platform,
+  Text,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { bible } from "../utils/constants";
 import { Expander } from "../utils/expander";
 import { useState, useRef } from "react";
 import { getChapterHeight } from "../utils/utility";
-import { Platform } from "react-native";
 
 const HolyBibleScreen = (props) => {
   const {
@@ -80,7 +81,7 @@ const HolyBibleScreen = (props) => {
                     <View style={styles.chapters(getChapterHeight(book.title))}>
                       {book.content.map((chapter) => {
                         return (
-                          <View
+                          <Text
                             style={
                               selectedChapter === chapter.chapter
                                 ? styles.chapter("#000000")
@@ -89,6 +90,7 @@ const HolyBibleScreen = (props) => {
                             key={`${book.title.trim().toLowerCase()}-${
                               chapter.chapter
                             }`}
+                            allowFontScaling={false}
                           >
                             <Button
                               key={`${book.title.trim().toLowerCase()}-${
@@ -108,7 +110,7 @@ const HolyBibleScreen = (props) => {
                               }}
                               color={Platform.OS === "ios" ? "white" : "gray"}
                             />
-                          </View>
+                          </Text>
                         );
                       })}
                     </View>
@@ -162,8 +164,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     paddingTop: 10,
-    width: Platform.OS === "ios" ? 340 : 350,
+    width: Platform.OS === "ios" ? 340 : 380,
     height: chapterHeight,
+    maxHeight: chapterHeight + 30,
     marginLeft: 20,
     gap: 5,
   }),
@@ -171,9 +174,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "800",
     color: "white",
-    width: 45,
-    height: 45,
+    width: 48,
+    height: 48,
     backgroundColor: selectedColor,
-    justifyContent: "center",
+    textAlign: "center",
   }),
 });

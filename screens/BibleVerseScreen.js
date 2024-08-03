@@ -109,7 +109,9 @@ const BibleVerseScreen = (props) => {
               onPress={() => saveVerse(content.chapter)}
               disabled={selectedVerses.length === 0}
             >
-              <Text style={styles.saveButtonText}>Save Verses</Text>
+              <Text style={styles.saveButtonText} allowFontScaling={false}>
+                Save Verses
+              </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     paddingTop: 10,
-    width: 340,
+    width: 350,
     marginLeft: 20,
     gap: 5,
   },

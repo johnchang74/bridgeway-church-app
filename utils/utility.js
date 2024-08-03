@@ -132,33 +132,28 @@ export const getGreetingDesc = (currentHour) => {
 
 export const getChapterHeight = (bookName) => {
   if (bookName === "Psalm") {
-    return 1090;
+    return 1160;
   } else if (bookName === "Isaiah") {
-    return 490;
+    return 530;
   } else if (bookName === "Genesis" || bookName === "Jeremiah") {
-    return 390;
+    return 420;
   } else if (bookName === "Ezekiel") {
-    return 340;
+    return 370;
   } else if (
     bookName === "Job" ||
     bookName === "Exodus" ||
     bookName === "Ezekiel"
   ) {
-    return 290;
-  } else if (
-    bookName === "Numbers" ||
-    bookName === "2 Chronicles" ||
-    bookName === "Job"
-  ) {
-    return 290;
+    return 320;
+  } else if (bookName === "Numbers" || bookName === "2 Chronicles") {
+    return 320;
   } else if (
     bookName === "Deuteronomy" ||
-    bookName === "Job" ||
     bookName === "1 Samuel" ||
     bookName === "1 Chronicles" ||
     bookName === "Proverbs"
   ) {
-    return 240;
+    return 270;
   } else if (
     bookName === "Joshua" ||
     bookName === "Leviticus" ||
@@ -169,7 +164,7 @@ export const getChapterHeight = (bookName) => {
     bookName === "Luke" ||
     bookName === "Acts"
   ) {
-    return 195;
+    return 210;
   } else if (
     bookName === "Judges" ||
     bookName === "Mark" ||
@@ -177,7 +172,7 @@ export const getChapterHeight = (bookName) => {
     bookName === "Romans" ||
     bookName === "1 Corinthians"
   ) {
-    return 140;
+    return 170;
   } else if (
     bookName === "Ezra" ||
     bookName === "Nehemiah" ||
@@ -191,7 +186,7 @@ export const getChapterHeight = (bookName) => {
     bookName === "2 Corinthians" ||
     bookName === "Hebrews"
   ) {
-    return 90;
+    return 120;
   } else if (
     bookName === "Galatians" ||
     bookName === "Ephesians" ||
@@ -211,7 +206,7 @@ export const getChapterHeight = (bookName) => {
     bookName === "3 John" ||
     bookName === "Jude"
   ) {
-    return 45;
+    return 50;
   } else if (
     bookName === "Ruth" ||
     bookName === "Lamentations" ||
@@ -223,10 +218,9 @@ export const getChapterHeight = (bookName) => {
     bookName === "Habakkuk" ||
     bookName === "Zehpaniah" ||
     bookName === "Haggai" ||
-    bookName === "Malachi" ||
-    bookName === "Matthew"
+    bookName === "Malachi"
   ) {
-    return 40;
+    return 50;
   } else {
     return 215;
   }
