@@ -1,3 +1,10 @@
+export const adminEmails = [
+  "john.kim@bridgewaychurch.ca",
+  "gospelway128@gmail.com",
+];
+
+export const adminSessionDuration = 3000 * 12;
+
 export const bible = [
   {
     title: "Genesis",

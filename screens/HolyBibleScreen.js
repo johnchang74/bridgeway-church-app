@@ -13,7 +13,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { bible } from "../utils/constants";
 import { Expander } from "../utils/expander";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { getChapterHeight } from "../utils/utility";
 
 const HolyBibleScreen = (props) => {
@@ -26,7 +26,6 @@ const HolyBibleScreen = (props) => {
   const navigation = useNavigation();
   const [selectedBook, setSelectedBook] = useState();
   const [selectedChapter, setSelectedChapter] = useState();
-  const scrollViewRef = useRef();
 
   const chooseBook = (bookName) => {
     setSelectedBook(bookName);
@@ -51,23 +50,9 @@ const HolyBibleScreen = (props) => {
         <Image style={styles.arrow} source={require("../assets/arrow.png")} />
       </Pressable>
       <SafeAreaView style={styles.contentContainer}>
-        <ScrollView
-          style={styles.scrollView}
-          onContentSizeChange={() => {
-            if (
-              selectedBook === "1 John" ||
-              selectedBook === "2 John" ||
-              selectedBook === "3 John" ||
-              selectedBook === "Jude" ||
-              selectedBook === "Revelation"
-            ) {
-              scrollViewRef.current?.scrollToEnd();
-            }
-          }}
-          ref={scrollViewRef}
-        >
+        <ScrollView style={styles.scrollView}>
           {bible &&
-            bible.map((book) => {
+            bible.map((book, index) => {
               return (
                 <Expander
                   buttonText={book.title}
@@ -77,8 +62,12 @@ const HolyBibleScreen = (props) => {
                   selectedBook={selectedBook}
                   expand={book.title === selectedBook}
                   selectBook={() => chooseBook(book.title)}
+                  bookIndex={`${index + 1}-${book.title}`}
                   children={
-                    <View style={styles.chapters(getChapterHeight(book.title))}>
+                    <View
+                      style={styles.chapters(getChapterHeight(book.title))}
+                      id={`${index + 1}-${book.title}`}
+                    >
                       {book.content.map((chapter) => {
                         return (
                           <Text
@@ -128,7 +117,7 @@ export default HolyBibleScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: "#1A1A19",
   },
   arrow: {
@@ -150,12 +139,12 @@ const styles = StyleSheet.create({
   },
   collapsedBooks: {
     marginTop: 20,
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "700",
     color: "white",
   },
   expandedBooks: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "700",
     marginTop: 20,
     color: "white",
@@ -169,6 +158,8 @@ const styles = StyleSheet.create({
     maxHeight: chapterHeight + 30,
     marginLeft: 20,
     gap: 5,
+
+    position: "absolute",
   }),
   chapter: (selectedColor) => ({
     fontSize: 17,
