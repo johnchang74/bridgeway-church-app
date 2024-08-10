@@ -108,6 +108,11 @@ const HolyBibleScreen = (props) => {
               );
             })}
         </ScrollView>
+        <View style={{ marginTop: 10 }}>
+          <Text style={{ fontSize: 12, textAlign: "center", color: "white" }}>
+            © 2024 Bridgeway Church
+          </Text>
+        </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );
@@ -130,7 +135,7 @@ const styles = StyleSheet.create({
     // paddingTop: StatusBar.currentHeight,
   },
   scrollView: {
-    maxHeight: 700,
+    maxHeight: 770,
   },
   contentContainer: {
     marginLeft: 15,

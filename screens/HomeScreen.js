@@ -124,6 +124,18 @@ const HomeScreen = (props) => {
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>
+      <View style={{ marginTop: -40 }}>
+        <Text
+          style={{
+            fontSize: 12,
+            textAlign: "center",
+            color: "white",
+            fontWeight: 500,
+          }}
+        >
+          © 2024 Bridgeway Church
+        </Text>
+      </View>
     </KeyboardAvoidingView>
   );
 };

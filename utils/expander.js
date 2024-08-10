@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Text } from "react-native";
+import { ScrollView, Text } from "react-native";
+import { minHeight } from "react-native-media-queries";
 
 export const Expander = ({
   children,
@@ -11,7 +12,7 @@ export const Expander = ({
   bookIndex,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const verseBlock = useRef();
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     setIsExpanded(expand);
@@ -20,18 +21,9 @@ export const Expander = ({
   const toggleExpand = () => {
     selectBook(buttonText);
     setIsExpanded(!isExpanded);
-    if (isExpanded) {
-      scrollCallBack({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      });
-    }
-  };
-
-  const scrollCallBack = () => {
-    if (verseBlock?.current) {
-      verseBlock.current.scrollIntoView();
+    const { current } = scrollRef;
+    if (!current && isExpanded) {
+      current.scrollIntoView();
     }
   };
 
@@ -41,7 +33,7 @@ export const Expander = ({
       style={isExpanded ? expandedStyle : collapsedStyle}
       key={buttonText.trim().toLowerCase()}
       onPress={toggleExpand}
-      ref={verseBlock}
+      ref={scrollRef}
     >
       {buttonText}
       {isExpanded ? children : ""}

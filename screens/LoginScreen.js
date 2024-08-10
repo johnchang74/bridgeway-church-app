@@ -99,6 +99,9 @@ const LoginScreen = () => {
           Forgot password?
         </Text>
       </View>
+      <View style={{ marginTop: 90 }}>
+        <Text style={{ fontSize: 12 }}>© 2024 Bridgeway Church</Text>
+      </View>
     </KeyboardAvoidingView>
   );
 };

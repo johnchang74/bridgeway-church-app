@@ -115,16 +115,15 @@ const DailyReadScreen = (props) => {
             containerStyle={styles.dailyCheckbox(
               Platform.OS === "ios" ? -6 : -30
             )}
-            onPress={() => {
+            onPress={async () => {
               setCheckDaily(!checkDaily);
-              updateDailyRead(checkDaily, getCurrentDate(), email);
+              await updateDailyRead(checkDaily, getCurrentDate(), email);
             }}
           />
         </View>
         <Divider
           bold={true}
-          // style={styles.divider(Platform.OS === "ios" ? -7 : -75)}
-          style={styles.divider(Platform.OS === "ios" ? -7 : -110)}
+          style={styles.divider(Platform.OS === "ios" ? -7 : -95)}
         />
         <View style={styles.bibleVerses}>
           <ScrollView style={styles.scrollView}>
@@ -155,9 +154,9 @@ const DailyReadScreen = (props) => {
             containerStyle={styles.weeklyCheckbox(
               Platform.OS === "ios" ? "29%" : "auto"
             )}
-            onPress={() => {
+            onPress={async () => {
               setCheckWeekly(!checkWeekly);
-              updateWeeklyRead(checkWeekly, getCurrentDate(), email);
+              await updateWeeklyRead(checkWeekly, getCurrentDate(), email);
             }}
           />
         </View>
@@ -166,17 +165,13 @@ const DailyReadScreen = (props) => {
           style={styles.divider(Platform.OS === "ios" ? -7 : -5)}
         />
         <View style={styles.youtube}>
-          <YoutubePlayer
-            height={200}
-            play={false}
-            videoId={"IbsWk3g8N5k?si=SIsmYSdEJz28M-_u"}
-          />
+          <YoutubePlayer height={200} play={false} videoId={"NH2CmXD0YRw"} />
         </View>
       </View>
       <View style={styles.instructionContainer}>
         <TouchableOpacity
           style={styles.instruction}
-          onPress={() => {
+          onPress={async () => {
             extraInfo.daily = checkDaily;
             extraInfo.weekly = checkWeekly;
             navigation.navigate("Home", {
@@ -191,6 +186,11 @@ const DailyReadScreen = (props) => {
             {completeCount}/2 Completed
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: 15 }}>
+        <Text style={{ fontSize: 12, textAlign: "center" }}>
+          © 2024 Bridgeway Church
+        </Text>
       </View>
     </KeyboardAvoidingView>
   );
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   }),
   instructionContainer: {
-    marginTop: "10%",
+    marginTop: "5%",
     marginLeft: "auto",
     marginRight: "auto",
     width: "45%",
