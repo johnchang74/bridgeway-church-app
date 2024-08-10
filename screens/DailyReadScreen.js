@@ -123,7 +123,7 @@ const DailyReadScreen = (props) => {
         </View>
         <Divider
           bold={true}
-          style={styles.divider(Platform.OS === "ios" ? -7 : -95)}
+          style={styles.divider(Platform.OS === "ios" ? -7 : -100)}
         />
         <View style={styles.bibleVerses}>
           <ScrollView style={styles.scrollView}>

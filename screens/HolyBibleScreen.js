@@ -28,6 +28,7 @@ const HolyBibleScreen = (props) => {
   const [selectedChapter, setSelectedChapter] = useState();
 
   const chooseBook = (bookName) => {
+    setSelectedChapter();
     setSelectedBook(bookName);
   };
 
@@ -38,14 +39,16 @@ const HolyBibleScreen = (props) => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Pressable
-        onPress={() =>
+        onPress={() => {
+          setSelectedBook();
+          setSelectedChapter();
           navigation.navigate("Home", {
             firstName,
             lastName,
             email,
             extraInfo,
-          })
-        }
+          });
+        }}
       >
         <Image style={styles.arrow} source={require("../assets/arrow.png")} />
       </Pressable>
@@ -73,8 +76,8 @@ const HolyBibleScreen = (props) => {
                           <Text
                             style={
                               selectedChapter === chapter.chapter
-                                ? styles.chapter("#000000")
-                                : styles.chapter("#808080")
+                                ? styles.selectedChapterStyle
+                                : styles.chapter
                             }
                             key={`${book.title.trim().toLowerCase()}-${
                               chapter.chapter
@@ -97,7 +100,11 @@ const HolyBibleScreen = (props) => {
                                   content: chapter,
                                 });
                               }}
-                              color={Platform.OS === "ios" ? "white" : "gray"}
+                              color={
+                                selectedChapter === chapter.chapter
+                                  ? "#000000"
+                                  : "#808080"
+                              }
                             />
                           </Text>
                         );
@@ -166,13 +173,22 @@ const styles = StyleSheet.create({
 
     position: "absolute",
   }),
-  chapter: (selectedColor) => ({
+  chapter: {
     fontSize: 17,
     fontWeight: "800",
     color: "white",
     width: 48,
     height: 48,
-    backgroundColor: selectedColor,
+    backgroundColor: "#808080",
     textAlign: "center",
-  }),
+  },
+  selectedChapterStyle: {
+    fontSize: 17,
+    fontWeight: "800",
+    color: "white",
+    width: 48,
+    height: 48,
+    backgroundColor: "#000000",
+    textAlign: "center",
+  },
 });

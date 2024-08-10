@@ -59,14 +59,15 @@ const BibleVerseScreen = (props) => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <Pressable
-        onPress={() =>
+        onPress={() => {
+          setSelectedVerses([]);
           navigation.navigate("HolyBible", {
             firstName,
             lastName,
             email,
             extraInfo,
-          })
-        }
+          });
+        }}
       >
         <Image style={styles.arrow} source={require("../assets/arrow.png")} />
       </Pressable>
@@ -115,6 +116,11 @@ const BibleVerseScreen = (props) => {
             </TouchableOpacity>
           </View>
         </ScrollView>
+        <View style={{ marginTop: 40 }}>
+          <Text style={{ fontSize: 12, textAlign: "center", color: "white" }}>
+            © 2024 Bridgeway Church
+          </Text>
+        </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );
