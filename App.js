@@ -11,6 +11,7 @@ import ChangeNameScreen from "./screens/ChangeNameScreen";
 import DailyReadScreen from "./screens/DailyReadScreen";
 import HolyBibleScreen from "./screens/HolyBibleScreen";
 import BibleVerseScreen from "./screens/BibleVerseScreen";
+import ContactUsScreen from "./screens/ContactUsScreen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Stack = createNativeStackNavigator();
@@ -71,6 +72,11 @@ export default function App() {
             options={{ headerShown: false }}
             name="BibleVerse"
             component={BibleVerseScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="ContactUs"
+            component={ContactUsScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

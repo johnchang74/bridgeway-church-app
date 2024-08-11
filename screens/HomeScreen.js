@@ -60,21 +60,38 @@ const HomeScreen = (props) => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <Pressable
-        onPress={() =>
-          navigation.navigate("Setting", {
-            firstName,
-            lastName,
-            email,
-            extraInfo,
-          })
-        }
-      >
-        <Image
-          style={styles.setting}
-          source={require("../assets/setting.png")}
-        />
-      </Pressable>
+      <View style={{ flexDirection: "row" }}>
+        <Pressable
+          onPress={() =>
+            navigation.navigate("Setting", {
+              firstName,
+              lastName,
+              email,
+              extraInfo,
+            })
+          }
+        >
+          <Image
+            style={styles.setting}
+            source={require("../assets/setting.png")}
+          />
+        </Pressable>
+        <Pressable
+          onPress={() =>
+            navigation.navigate("ContactUs", {
+              firstName,
+              lastName,
+              email,
+              extraInfo,
+            })
+          }
+        >
+          <Image
+            style={styles.contactUs}
+            source={require("../assets/church.png")}
+          />
+        </Pressable>
+      </View>
       <View style={styles.textContainer}>
         <Text style={styles.month}>{month}</Text>
         <Text style={styles.date}>{day}</Text>
@@ -186,10 +203,16 @@ const styles = StyleSheet.create({
     color: "white",
   },
   setting: {
-    marginTop: "10%",
-    marginLeft: "5%",
-    height: "18%",
-    width: "10%",
+    marginTop: "35%",
+    marginLeft: "20%",
+    height: "20%",
+    width: "45%",
+  },
+  contactUs: {
+    marginTop: 30,
+    marginLeft: -20,
+    height: 35,
+    width: 65,
   },
   buttonContainer: {
     display: "flex",
