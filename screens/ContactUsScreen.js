@@ -81,6 +81,17 @@ const ContactUsScreen = (props) => {
           </Text>
         </View>
       </View>
+      <View style={{ marginTop: 100 }}>
+        <Text
+          style={{
+            fontSize: 12,
+            textAlign: "center",
+            fontWeight: 500,
+          }}
+        >
+          © 2024 Bridgeway Church
+        </Text>
+      </View>
     </KeyboardAvoidingView>
   );
 };
