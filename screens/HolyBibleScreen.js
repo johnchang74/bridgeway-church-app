@@ -77,7 +77,7 @@ const HolyBibleScreen = (props) => {
                             style={
                               selectedChapter === chapter.chapter
                                 ? styles.selectedChapterStyle
-                                : styles.chapter
+                                : styles.chapter(chapter)
                             }
                             key={`${book.title.trim().toLowerCase()}-${
                               chapter.chapter
@@ -115,12 +115,12 @@ const HolyBibleScreen = (props) => {
               );
             })}
         </ScrollView>
-        <View style={{ marginTop: 10 }}>
-          <Text style={{ fontSize: 12, textAlign: "center", color: "white" }}>
-            © 2024 Bridgeway Church
-          </Text>
-        </View>
       </SafeAreaView>
+      <View style={{ marginTop: 10 }}>
+        <Text style={{ fontSize: 12, textAlign: "center", color: "white" }}>
+          © 2024 Bridgeway Church
+        </Text>
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -133,21 +133,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#1A1A19",
   },
   arrow: {
-    marginTop: "10%",
-    marginLeft: "3%",
-    height: "18%",
-    width: "10%",
+    height: 45,
+    width: 45,
+    marginTop: 25,
+    marginLeft: 10,
   },
   scrollContainer: {
     // paddingTop: StatusBar.currentHeight,
   },
   scrollView: {
-    maxHeight: 770,
+    maxHeight: 750,
   },
   contentContainer: {
     marginLeft: 15,
     marginRight: 15,
-    marginTop: -120,
   },
   collapsedBooks: {
     marginTop: 20,
@@ -173,7 +172,7 @@ const styles = StyleSheet.create({
 
     position: "absolute",
   }),
-  chapter: {
+  chapter: (number) => ({
     fontSize: 17,
     fontWeight: "800",
     color: "white",
@@ -181,7 +180,7 @@ const styles = StyleSheet.create({
     height: 48,
     backgroundColor: "#808080",
     textAlign: "center",
-  },
+  }),
   selectedChapterStyle: {
     fontSize: 17,
     fontWeight: "800",

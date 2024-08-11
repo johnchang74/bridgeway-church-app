@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
   textContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: "10%",
   },
   title: {
     fontWeight: "800",
@@ -177,12 +176,11 @@ const styles = StyleSheet.create({
     width: 120,
   },
   editContainer: {
-    marginTop: 60,
     marginLeft: 230,
     height: 30,
   },
   edit: {
-    height: 20,
+    height: 27,
     width: 50,
     backgroundColor: "#09DEC5",
     alignItems: "center",
@@ -190,14 +188,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   editButtonText: {
-    fontSize: 14,
+    fontSize: 13,
     color: "white",
     fontWeight: "700",
   },
   userContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: "15%",
+    height: 110,
+    marginTop: 20,
   },
   name: {
     fontWeight: "800",
@@ -232,7 +231,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#09DEC5",
     width: "30%",
-    height: "20%",
+    height: "23%",
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -243,10 +242,10 @@ const styles = StyleSheet.create({
     color: "white",
   },
   arrow: {
-    marginTop: "10%",
-    marginLeft: "5%",
-    height: "18%",
-    width: "10%",
+    height: 45,
+    width: 45,
+    marginTop: 25,
+    marginLeft: 10,
   },
   error: {
     marginTop: 20,

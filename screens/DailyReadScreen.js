@@ -110,21 +110,14 @@ const DailyReadScreen = (props) => {
             center
             checked={checkDaily}
             checkedColor="#09DEC5"
-            title="Complete"
             size={35}
-            containerStyle={styles.dailyCheckbox(
-              Platform.OS === "ios" ? -6 : -30
-            )}
             onPress={async () => {
               setCheckDaily(!checkDaily);
               await updateDailyRead(checkDaily, getCurrentDate(), email);
             }}
           />
         </View>
-        <Divider
-          bold={true}
-          style={styles.divider(Platform.OS === "ios" ? -7 : -100)}
-        />
+        <Divider bold={true} style={styles.divider} />
         <View style={styles.bibleVerses}>
           <ScrollView style={styles.scrollView}>
             <>
@@ -141,7 +134,7 @@ const DailyReadScreen = (props) => {
             </>
           </ScrollView>
         </View>
-        <View style={styles.videoContainer(Platform.OS === "ios" ? 35 : 15)}>
+        <View style={styles.videoContainer(Platform.OS === "ios" ? 35 : 20)}>
           <View>
             <Text style={styles.title}>Weekly - Latest Sermon</Text>
           </View>
@@ -160,10 +153,7 @@ const DailyReadScreen = (props) => {
             }}
           />
         </View>
-        <Divider
-          bold={true}
-          style={styles.divider(Platform.OS === "ios" ? -7 : -5)}
-        />
+        <Divider bold={true} style={styles.divider} />
         <View style={styles.youtube}>
           <YoutubePlayer height={200} play={false} videoId={"NH2CmXD0YRw"} />
         </View>
@@ -204,9 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   contentContainer: {
-    marginTop: -110,
     marginLeft: 20,
-    overflowY: "scroll",
   },
   title: {
     fontWeight: "800",
@@ -219,11 +207,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#09DEC5",
   },
-  divider: (marginTopValue) => ({
+  divider: {
     backgroundColor: "#09DEC5",
     marginRight: 20,
-    marginTop: marginTopValue,
-  }),
+  },
   bibleVerses: {
     marginTop: 10,
     marginRight: 20,
@@ -240,21 +227,21 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   arrow: {
-    marginTop: "10%",
-    marginLeft: "3%",
-    height: "18%",
-    width: "10%",
+    height: 45,
+    width: 45,
+    marginTop: 25,
+    marginLeft: 10,
   },
   checkboxContainer: {
     flexDirection: "row",
+    gap: 90,
   },
   dailyCheckbox: (marginTopValue) => ({
     width: "10%",
-    height: "93%",
     backgroundColor: "white",
     marginLeft: "auto",
-    marginTop: marginTopValue,
-    alignItems: "center",
+    // marginTop: marginTopValue,
+    // alignItems: "center",
   }),
   weeklyCheckbox: (marginLeft) => ({
     width: "10%",
