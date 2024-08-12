@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   arrow: {
     height: 45,
     width: 45,
-    marginTop: 25,
+    marginTop: 10,
     marginLeft: 10,
   },
   error: {
