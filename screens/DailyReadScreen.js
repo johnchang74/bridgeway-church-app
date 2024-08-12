@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   arrow: {
     height: 45,
     width: 45,
-    marginTop: 10,
+    marginTop: 5,
     marginLeft: 10,
   },
   checkboxContainer: {
@@ -240,8 +240,6 @@ const styles = StyleSheet.create({
     width: "10%",
     backgroundColor: "white",
     marginLeft: "auto",
-    // marginTop: marginTopValue,
-    // alignItems: "center",
   }),
   weeklyCheckbox: (marginLeft) => ({
     width: "10%",

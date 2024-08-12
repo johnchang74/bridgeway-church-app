@@ -2,12 +2,12 @@
   "expo": {
     "name": "bridgeway-church-app",
     "slug": "bridgeway-church-app",
-    "version": "6.0.0",
+    "version": "7.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/bridgeway.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,7 +16,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"

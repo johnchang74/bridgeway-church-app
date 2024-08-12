@@ -135,14 +135,14 @@ const styles = StyleSheet.create({
   arrow: {
     height: 45,
     width: 45,
-    marginTop: 10,
+    marginTop: 5,
     marginLeft: 10,
   },
   scrollContainer: {
     // paddingTop: StatusBar.currentHeight,
   },
   scrollView: {
-    maxHeight: 750,
+    maxHeight: 760,
   },
   contentContainer: {
     marginLeft: 15,
